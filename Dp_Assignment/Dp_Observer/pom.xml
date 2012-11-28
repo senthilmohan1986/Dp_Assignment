@@ -6,4 +6,11 @@
     <version>0.0.1</version>
   </parent>
   <artifactId>Dp_Observer</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.dp.assignment</groupId>
+  		<artifactId>Dp_Patterns_Interface</artifactId>
+  		<version>0.0.1</version>
+  	</dependency>
+  </dependencies>
 </project>

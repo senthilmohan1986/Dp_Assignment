@@ -12,5 +12,7 @@
   	<module>Dp_AbstractFactory</module>
   	<module>Dp_Strategy</module>
   	<module>Dp_ChainOfResponsibilty</module>
+  	<module>Dp_Project_Executor</module>
+  	<module>Dp_Patterns_Interface</module>
   </modules>
 </project>
