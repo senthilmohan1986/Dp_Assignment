@@ -8,3 +8,6 @@ public class AbstractFactoryExecutorImpl implements IExecutorPatterns{
 		System.out.println("Abstract Factory - process Request");
 	}	
 }
+
+
+//testing
