@@ -12,6 +12,8 @@ import java.awt.*;
 
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.system.*;
+import sg.edu.nus.iss.vmcs.builder.MaintainerPanelBuilder;
+import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
 import sg.edu.nus.iss.vmcs.machinery.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -47,6 +49,12 @@ public class MaintenanceController {
 		mpanel.display();
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
 		// setActive of password, invalid and valid display.
+		
+		PanelSetupController builder=new PanelSetupController();
+		builder.setPanelBuilder(new MaintainerPanelBuilder((Frame) scp,this));
+		builder.constractPanel();
+		builder.getPanel().setVisible(true);
+		
 	}
 
 	public AccessManager getAccessManager() {
