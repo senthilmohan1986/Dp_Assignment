@@ -8,6 +8,7 @@ package sg.edu.nus.iss.vmcs.system;
  *
  */
 
+import sg.edu.nus.iss.vmcs.customer.CustomerPanelController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.util.*;
@@ -53,6 +54,14 @@ public class SimulationController {
 	public void setSimulationActive(boolean vl) {
 		scp.setSimulationActive(vl);
 	}
+	
+	public void setupCustomerPanel() {
+		CustomerPanelController mctrl;
+		mctrl = mCtrl.getCustomerCtrl();
+		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		mctrl.displayCustomerPanel();
+	}
+
 
 	public void setupSimulator() {
 		//MaintenanceController maintenanceCtrl;

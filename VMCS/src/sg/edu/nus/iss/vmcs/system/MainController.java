@@ -10,6 +10,7 @@ package sg.edu.nus.iss.vmcs.system;
 
 import java.io.*;
 
+import sg.edu.nus.iss.vmcs.customer.CustomerPanelController;
 import sg.edu.nus.iss.vmcs.maintenance.*;
 import sg.edu.nus.iss.vmcs.machinery.*;
 import sg.edu.nus.iss.vmcs.store.*;
@@ -28,6 +29,7 @@ public class MainController {
 	private MachineryController   machineryCtrl;
 	private MaintenanceController maintenanceCtrl;
 	private StoreController       storeCtrl;
+	private CustomerPanelController customerCtrl;
 
 	private String      propertyFile;
 
@@ -60,6 +62,8 @@ public class MainController {
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
+			customerCtrl=new CustomerPanelController(this);
+			
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",
@@ -96,5 +100,13 @@ public class MainController {
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();
+	}
+
+	public CustomerPanelController getCustomerCtrl() {
+		return customerCtrl;
+	}
+
+	public void setCustomerCtrl(CustomerPanelController customerCtrl) {
+		this.customerCtrl = customerCtrl;
 	}
 }
