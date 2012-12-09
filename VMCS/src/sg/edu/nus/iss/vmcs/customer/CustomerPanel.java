@@ -15,6 +15,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 
+import sg.edu.nus.iss.vmcs.system.CustomerPanelTerminateButtonListener;
+
 public class CustomerPanel extends Dialog {
 
 	/**
@@ -23,21 +25,21 @@ public class CustomerPanel extends Dialog {
 	private static final long serialVersionUID = 9210551434582978969L;
 	
 	
-	private TransactionController custCtrl;
+	private TransactionController transCtrl;
 	private CoinInputBox coinInputBox=new CoinInputBox();
 	private DrinkSelectionBox drinkSelectionBox=new DrinkSelectionBox();
 	private Button btnTerminate=new Button("Terminate and Return Cash");
-	private TextField txtNoChangeAvail=new TextField("No Change Availabel");
+	private TextField txtNoChangeAvail=new TextField("No Change Available");
 	private Label lblCollectCoins=new Label("Collect Coins: ");
 	private TextField txtCollectCoin=new TextField("0 C");
 	private Label lblCollectCan=new Label("Collect Can Here: ");
 	private TextField txtCollectCan=new TextField("No Can ");
 	private FaultDetectionPanel faultDetection;
-	public CustomerPanel(Frame owner, TransactionController customerCtrl) {
+	public CustomerPanel(Frame owner, TransactionController transCtrl) {
 		
 		super(owner);
 		// TODO Auto-generated constructor stub
-		custCtrl=customerCtrl;
+		this.transCtrl= transCtrl;
 		initComponent();
 	}
 	
@@ -64,6 +66,7 @@ public class CustomerPanel extends Dialog {
 		nochange.add(txtNoChangeAvail,BorderLayout.NORTH);
 		nochange.add(btnTerminate,BorderLayout.SOUTH);
 		p.add(nochange);
+		btnTerminate.addActionListener(new CustomerPanelTerminateButtonListener(transCtrl));
 		
 		
 		Panel coin=new Panel();
@@ -191,13 +194,13 @@ public class CustomerPanel extends Dialog {
 	}
 
 
-	public TransactionController getCustCtrl() {
-		return custCtrl;
+	public TransactionController getTransactionController() {
+		return transCtrl;
 	}
 
 
-	public void setCustCtrl(TransactionController custCtrl) {
-		this.custCtrl = custCtrl;
+	public void setTransactionController(TransactionController transCtrl) {
+		this.transCtrl = transCtrl;
 	}
 	
 	
