@@ -73,6 +73,7 @@ public class TransactionController {
 	{
 		
 	}
+	
 	public void terminateFault()
 	{
 		
@@ -82,10 +83,12 @@ public class TransactionController {
 	{
 		
 	}
+	
 	public void cancelTransaction()
 	{
 		
 	}
+	
 	public void closeDown()
 	{
 		
