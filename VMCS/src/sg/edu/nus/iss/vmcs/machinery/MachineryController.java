@@ -8,6 +8,11 @@ package sg.edu.nus.iss.vmcs.machinery;
  *
  */
 
+import java.awt.Frame;
+
+import sg.edu.nus.iss.vmcs.builder.MachineryPanelBuilder;
+import sg.edu.nus.iss.vmcs.builder.MaintainerPanelBuilder;
+import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.util.*;
 import sg.edu.nus.iss.vmcs.store.*;
@@ -56,6 +61,12 @@ public class MachineryController {
 		ml.display();
 		//System.out.println("get door status:" + door.isDoorClosed());
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
+		
+		
+		PanelSetupController builder=new PanelSetupController();
+		builder.setPanelBuilder(new MachineryPanelBuilder((Frame) scp,this));
+		builder.constractPanel();
+		builder.getPanel().setVisible(true);
 	}
 
 	public void closeMachineryPanel() {
