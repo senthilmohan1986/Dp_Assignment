@@ -14,7 +14,10 @@ public class CoinInputBox extends Panel {
 	
 	public int totalAmount;
 	
-	
+	public void setActive(Boolean state)
+	{
+		this.setEnabled(state);
+	}
 	
 	public int getTotalAmount() {
 		return totalAmount;
