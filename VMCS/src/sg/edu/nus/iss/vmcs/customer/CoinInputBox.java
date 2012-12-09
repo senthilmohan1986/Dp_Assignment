@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.Panel;
@@ -11,6 +12,16 @@ public class CoinInputBox extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public int totalAmount;
+	
+	
+	
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
 	private Label txtEnterCoinHere;
 	
 	private Button btnFiveCent;
@@ -30,13 +41,28 @@ public class CoinInputBox extends Panel {
 	
 	public CoinInputBox() {
 		super();
+		
+		CoinInputListener fiveCentListener=new CoinInputListener(this,CoinType.FIVE);
+		CoinInputListener tenCentListener=new CoinInputListener(this,CoinType.TEN);
+		CoinInputListener twentyCentListener=new CoinInputListener(this,CoinType.TWENTY);
+		CoinInputListener fiftyCentListener=new CoinInputListener(this,CoinType.FIFTY);
+		CoinInputListener oneDollarListener=new CoinInputListener(this,CoinType.ONE_DOLLAR);
+		CoinInputListener invalidCoinListener=new CoinInputListener(this,CoinType.INVALID);
 		txtEnterCoinHere=new Label("Enter coin here: ");
 		 btnFiveCent=new Button("5 ¢");
+		 
 		 btnTenCent=new Button("10 ¢");
+		 btnFiveCent.addActionListener(fiveCentListener);
 		 btnTwentyCent=new Button("20 ¢");
+		 btnTenCent.addActionListener(tenCentListener);
 		 btnFiftyCent=new Button("50 ¢");
+		 btnTwentyCent.addActionListener(twentyCentListener);
 		 btnOneDollar=new Button("1 $");
+		 btnFiftyCent.addActionListener(fiftyCentListener);
 		 btnInvalidCoin=new Button("Invalid");
+		 btnOneDollar.addActionListener(oneDollarListener);
+		 btnInvalidCoin.addActionListener(invalidCoinListener);
+		 
 		 txtInvalidCoin=new TextField("Invalid Coin");
 			lbalTotalInserted=new Label("Total Money Inserted");	
 			txtInserted=new TextField("");
@@ -55,6 +81,7 @@ public class CoinInputBox extends Panel {
 		 add(invalid);
 		 Panel inserted=new Panel();
 		 inserted.add(lbalTotalInserted);
+		 txtInserted.setPreferredSize(new Dimension(100,20));
 		 inserted.add(txtInserted);
 		 add(inserted);
 		 
