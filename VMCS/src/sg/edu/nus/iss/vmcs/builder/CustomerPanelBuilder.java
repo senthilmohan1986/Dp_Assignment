@@ -4,7 +4,7 @@ import java.awt.Dialog;
 import java.awt.Frame;
 
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
-import sg.edu.nus.iss.vmcs.customer.CustomerPanelController;
+import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
 
 public class CustomerPanelBuilder  extends PanelBuilder {
@@ -18,7 +18,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	
 
 	public CustomerPanelBuilder(Frame scp,
-			CustomerPanelController customerPanelController) {
+			TransactionController customerPanelController) {
 		// TODO Auto-generated constructor stub
 		panel=new CustomerPanel(scp, customerPanelController);
 	}
