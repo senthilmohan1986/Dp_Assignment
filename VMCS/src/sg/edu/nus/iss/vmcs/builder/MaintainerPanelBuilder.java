@@ -25,12 +25,7 @@ public class MaintainerPanelBuilder extends PanelBuilder {
 
 	@Override
 	public void buildControls() {
-		// TODO Auto-generated method stub
-		   JLabel lblTitle=new JLabel(" VMCS - Mainteainer Panel");
-		  JLabel lblPassword=new JLabel(" Password");
-		   JLabel lblAvailableCoin=new JLabel(" Quantity of Coins Available");
-		   JLabel lblAvailableDrink=new JLabel(" Quantity of Drinks Availble");
-		    JLabel lblbrandPrice=new JLabel("Brand Price");
+		// TODO Auto-generated method stu
 		    JLabel lblCollectCash=new JLabel("Collect Cash");
 		    panel.add(lblCollectCash);
 	}

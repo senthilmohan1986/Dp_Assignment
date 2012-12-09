@@ -123,6 +123,7 @@ public class TransactionController {
 		PanelSetupController builder=new PanelSetupController();
 		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
 		builder.constractPanel();
+		
 		builder.getPanel().setVisible(true);
 		//System.out.println("get door status:" + door.isDoorClosed());
 		

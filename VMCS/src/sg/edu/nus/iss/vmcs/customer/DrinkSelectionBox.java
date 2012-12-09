@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -25,11 +26,11 @@ public class DrinkSelectionBox extends Panel{
 	private TextField txtSoyaBean=new TextField("Soya Bean");
 	private TextField txtCocaCola=new TextField("Coca-cola");
 	
-	private TextField txtCocaStatus=new TextField("Coca-Cola");
-	private TextField txtFantaStatus=new TextField("Fanta");
-	private TextField txtSariStatus=new TextField("Sari");
-	private TextField txtSoyaBeanStatus=new TextField("Soya Bean");
-	private TextField txtCocaColaStatus=new TextField("Coca-cola");
+	private TextField txtCocaStatus=new TextField("NOT IN STOCK");
+	private TextField txtFantaStatus=new TextField("NOT IN STOCK");
+	private TextField txtSariStatus=new TextField("NOT IN STOCK");
+	private TextField txtSoyaBeanStatus=new TextField("NOT IN STOCK");
+	private TextField txtCocaColaStatus=new TextField("NOT IN STOCK");
 	
 	public DrinkSelectionBox()
 	{
@@ -41,22 +42,22 @@ public class DrinkSelectionBox extends Panel{
 		
 		
 		p.add(btnCoca);
-		p.add(txtCoca);
-		p.add(txtCocaStatus);
+		p.add(setBlackTheme(txtCoca));
+		p.add(setDisableTheme(txtCocaStatus));
 		
 		p.add(btnFanta);
-		p.add(txtFanta);
-		p.add(txtFantaStatus);
+		p.add(setBlackTheme(txtFanta));
+		p.add(setDisableTheme(txtFantaStatus));
 		p.add(btnSari);
-		p.add(txtSari);
-		p.add(txtSariStatus);
+		p.add(setBlackTheme(txtSari));
+		p.add(setDisableTheme(txtSariStatus));
 		p.add(btnSoyaBean);
-		p.add(txtSoyaBean);
-		p.add(txtSoyaBeanStatus);
+		p.add(setBlackTheme(txtSoyaBean));
+		p.add(setDisableTheme(txtSoyaBeanStatus));
 		
 		p.add(btnCocaCola);
-		p.add(txtCocaCola);		
-		p.add(txtCocaColaStatus);
+		p.add(setBlackTheme(txtCocaCola));		
+		p.add(setDisableTheme(txtCocaColaStatus));
 		
 		add(p);
 	   
@@ -182,5 +183,21 @@ public class DrinkSelectionBox extends Panel{
 		this.txtCocaColaStatus = txtCocaColaStatus;
 	}
 	
+	
+	private TextField setBlackTheme(TextField b)
+	{
+		b.setBackground(Color.BLACK);
+		b.setForeground(Color.WHITE);
+		return b;
+		
+	}
+	private TextField setDisableTheme(TextField b)
+	{
+		b.setBackground(Color.BLACK);
+		b.setForeground(Color.DARK_GRAY);
+	
+		return b;
+		
+	}
 	
 }
