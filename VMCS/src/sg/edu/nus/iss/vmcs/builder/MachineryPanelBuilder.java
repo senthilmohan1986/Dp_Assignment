@@ -8,8 +8,7 @@ import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 
-import com.dp.assignment.builder.frontend.panel.MachineyPanel;
-import com.dp.assignment.builder.frontend.panel.VMCSPanel;
+
 
 public class MachineryPanelBuilder extends PanelBuilder {
 

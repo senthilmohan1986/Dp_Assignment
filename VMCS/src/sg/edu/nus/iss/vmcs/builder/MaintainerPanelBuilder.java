@@ -8,9 +8,6 @@ import javax.swing.JLabel;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 
-import com.dp.assignment.builder.frontend.panel.MaintainerPanel;
-import com.dp.assignment.builder.frontend.panel.VMCSPanel;
-
 public class MaintainerPanelBuilder extends PanelBuilder {
 
 	public Dialog panel;
