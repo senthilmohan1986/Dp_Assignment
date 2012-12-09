@@ -6,20 +6,19 @@ import java.awt.Panel;
 import java.awt.TextField;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-
+import java.awt.Button;
 public class CoinInputBox extends Panel {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Label txtEnterCoinHere;
 	
-	private JButton btnFiveCent;
-	private JButton btnTenCent;
-	private JButton btnTwentyCent;
-	private JButton btnFiftyCent;
-	private JButton btnOneDollar;
-	private JButton btnInvalidCoin;
+	private Button btnFiveCent;
+	private Button btnTenCent;
+	private Button btnTwentyCent;
+	private Button btnFiftyCent;
+	private Button btnOneDollar;
+	private Button btnInvalidCoin;
 	
 	private TextField txtInvalidCoin;
 	private Label lbalTotalInserted;
@@ -32,12 +31,12 @@ public class CoinInputBox extends Panel {
 	public CoinInputBox() {
 		super();
 		txtEnterCoinHere=new Label("Enter coin here: ");
-		 btnFiveCent=new JButton("5 ¢");
-		 btnTenCent=new JButton("10 ¢");
-		 btnTwentyCent=new JButton("20 ¢");
-		 btnFiftyCent=new JButton("50 ¢");
-		 btnOneDollar=new JButton("1 $");
-		 btnInvalidCoin=new JButton("Invalid");
+		 btnFiveCent=new Button("5 ¢");
+		 btnTenCent=new Button("10 ¢");
+		 btnTwentyCent=new Button("20 ¢");
+		 btnFiftyCent=new Button("50 ¢");
+		 btnOneDollar=new Button("1 $");
+		 btnInvalidCoin=new Button("Invalid");
 		 txtInvalidCoin=new TextField("Invalid Coin");
 			lbalTotalInserted=new Label("Total Money Inserted");	
 			txtInserted=new TextField("");
@@ -61,40 +60,40 @@ public class CoinInputBox extends Panel {
 		 
 		
 	}
-	public JButton getBtnFiveCent() {
+	public Button getBtnFiveCent() {
 		return btnFiveCent;
 	}
-	public void setBtnFiveCent(JButton btnFiveCent) {
+	public void setBtnFiveCent(Button btnFiveCent) {
 		this.btnFiveCent = btnFiveCent;
 	}
-	public JButton getBtnTenCent() {
+	public Button getBtnTenCent() {
 		return btnTenCent;
 	}
-	public void setBtnTenCent(JButton btnTenCent) {
+	public void setBtnTenCent(Button btnTenCent) {
 		this.btnTenCent = btnTenCent;
 	}
-	public JButton getBtnTwentyCent() {
+	public Button getBtnTwentyCent() {
 		return btnTwentyCent;
 	}
-	public void setBtnTwentyCent(JButton btnTwentyCent) {
+	public void setBtnTwentyCent(Button btnTwentyCent) {
 		this.btnTwentyCent = btnTwentyCent;
 	}
-	public JButton getBtnFiftyCent() {
+	public Button getBtnFiftyCent() {
 		return btnFiftyCent;
 	}
-	public void setBtnFiftyCent(JButton btnFiftyCent) {
+	public void setBtnFiftyCent(Button btnFiftyCent) {
 		this.btnFiftyCent = btnFiftyCent;
 	}
-	public JButton getBtnOneDollar() {
+	public Button getBtnOneDollar() {
 		return btnOneDollar;
 	}
-	public void setBtnOneDollar(JButton btnOneDollar) {
+	public void setBtnOneDollar(Button btnOneDollar) {
 		this.btnOneDollar = btnOneDollar;
 	}
-	public JButton getBtnInvalidCoin() {
+	public Button getBtnInvalidCoin() {
 		return btnInvalidCoin;
 	}
-	public void setBtnInvalidCoin(JButton btnInvalidCoin) {
+	public void setBtnInvalidCoin(Button btnInvalidCoin) {
 		this.btnInvalidCoin = btnInvalidCoin;
 	}
 	public TextField getTxtInvalidCoin() {
