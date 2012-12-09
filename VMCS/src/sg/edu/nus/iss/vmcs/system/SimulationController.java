@@ -8,10 +8,10 @@ package sg.edu.nus.iss.vmcs.system;
  *
  */
 
-import sg.edu.nus.iss.vmcs.customer.CustomerPanelController;
-import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
+import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
  *
@@ -56,8 +56,8 @@ public class SimulationController {
 	}
 	
 	public void setupCustomerPanel() {
-		CustomerPanelController mctrl;
-		mctrl = mCtrl.getCustomerCtrl();
+		TransactionController mctrl;
+		mctrl = mCtrl.getTransactionCtrl();
 		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
 		mctrl.displayCustomerPanel();
 	}
