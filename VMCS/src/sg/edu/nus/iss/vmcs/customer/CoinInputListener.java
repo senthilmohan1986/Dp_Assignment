@@ -36,9 +36,9 @@ public class CoinInputListener implements ActionListener {
 	
 		
 		box.setTotalAmount(totalAMount);
-		double total=this.getTotalAMount()/100;
+		float total=this.getTotalAMount()/100f;
 		
-		box.getTxtInserted().setText(String.valueOf(this.getTotalAMount()));
+		box.getTxtInserted().setText(String.valueOf(total));
 		box.getTxtInvalidCoin().setBackground(Color.white);
 		}
 		else
