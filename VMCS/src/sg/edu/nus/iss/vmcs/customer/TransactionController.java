@@ -5,6 +5,7 @@ import java.awt.Frame;
 import sg.edu.nus.iss.vmcs.builder.CustomerPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.MachineryPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
+import sg.edu.nus.iss.vmcs.customer.terminate.ITerminateStrategy;
 import sg.edu.nus.iss.vmcs.machinery.Door;
 import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
 import sg.edu.nus.iss.vmcs.system.CustomerSimulatorPanel;
@@ -21,8 +22,21 @@ public class TransactionController {
 	
 	public MainController mainCtrl;
 	private CustomerSimulatorPanel sm;
+	private CustomerPanel customerPanel;
 	private CoinReceiver coinReceiver;
 	
+	private ITerminateStrategy terminateStrategy;
+	
+
+	public void setTerminateStrategy(ITerminateStrategy terminateStrategy) {
+		this.terminateStrategy = terminateStrategy;
+	}
+	public CoinReceiver getCoinReceiver() {
+		return coinReceiver;
+	}
+	public void setCoinReceiver(CoinReceiver coinReceiver) {
+		this.coinReceiver = coinReceiver;
+	}
 	public void initialize() throws VMCSException {
 		coinReceiver = new CoinReceiver(this);
 	}
@@ -97,7 +111,7 @@ public class TransactionController {
 	
 	public void termianteTransaction()
 	{
-		
+		terminateStrategy.terminate(this);
 	}
 	
 	public void cancelTransaction()
@@ -115,23 +129,28 @@ public class TransactionController {
 		/*if (sm == null)
 			sm = new CustomerSimulatorPanel(coinReceiver);
 
-		sm.display();*/
+		sm.display();
 		//System.out.println("get door status:" + door.isDoorClosed());
 		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
-		
+		*/
 		
 		PanelSetupController builder=new PanelSetupController();
 		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
 		builder.constractPanel();
-		
+		customerPanel=(CustomerPanel)builder.getPanel();
 		builder.getPanel().setVisible(true);
-		//System.out.println("get door status:" + door.isDoorClosed());
+
 		
-		
+	}
+	public CustomerPanel getCustomerPanel() {
+		return customerPanel;
+	}
+	public void setCustomerPanel(CustomerPanel customerPanel) {
+		this.customerPanel = customerPanel;
 	}
 	public void refreshCustomerPanel()
 	{
-		
+	
 	}
 
 }
