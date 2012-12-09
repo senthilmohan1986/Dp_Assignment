@@ -21,6 +21,7 @@ import sg.edu.nus.iss.vmcs.customer.CoinReceiver;
 
 public class ActivateCustomerPanelButtonListener implements ActionListener {
 
+	private SimulationController simCtrl;
 	private CustomerSimulatorPanel custPanel;
 	private CoinReceiver receiver;
 	
@@ -28,11 +29,16 @@ public class ActivateCustomerPanelButtonListener implements ActionListener {
 		receiver = ct;
 		custPanel = new CustomerSimulatorPanel(receiver);
 	}
+	
+	public ActivateCustomerPanelButtonListener(SimulationController ct) {
+		simCtrl=ct;
+	}
 	public void actionPerformed(ActionEvent e) {
 		/**@todo: Implement this java.awt.event.ActionListener method*/
 		System.out.println("Inside the Customer Panel");
 //		ctrl.setupSimulator();
-		custPanel.display();
+		
+		simCtrl.setupCustomerPanel();
 		
 	}
 }
