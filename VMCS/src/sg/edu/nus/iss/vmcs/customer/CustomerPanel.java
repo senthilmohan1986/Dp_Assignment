@@ -23,7 +23,7 @@ public class CustomerPanel extends Dialog {
 	private static final long serialVersionUID = 9210551434582978969L;
 	
 	
-	private CustomerPanelController custCtrl;
+	private TransactionController custCtrl;
 	private CoinInputBox coinInputBox=new CoinInputBox();
 	private DrinkSelectionBox drinkSelectionBox=new DrinkSelectionBox();
 	private Button btnTerminate=new Button("Terminate and Return Cash");
@@ -33,7 +33,7 @@ public class CustomerPanel extends Dialog {
 	private Label lblCollectCan=new Label("Collect Can Here: ");
 	private TextField txtCollectCan=new TextField("No Can ");
 	private FaultDetectionPanel faultDetection;
-	public CustomerPanel(Frame owner, CustomerPanelController customerCtrl) {
+	public CustomerPanel(Frame owner, TransactionController customerCtrl) {
 		
 		super(owner);
 		// TODO Auto-generated constructor stub
@@ -191,12 +191,12 @@ public class CustomerPanel extends Dialog {
 	}
 
 
-	public CustomerPanelController getCustCtrl() {
+	public TransactionController getCustCtrl() {
 		return custCtrl;
 	}
 
 
-	public void setCustCtrl(CustomerPanelController custCtrl) {
+	public void setCustCtrl(TransactionController custCtrl) {
 		this.custCtrl = custCtrl;
 	}
 	

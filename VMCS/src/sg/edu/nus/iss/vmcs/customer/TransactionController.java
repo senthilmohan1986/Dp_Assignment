@@ -1,6 +1,16 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import java.awt.Frame;
+
+import sg.edu.nus.iss.vmcs.builder.CustomerPanelBuilder;
+import sg.edu.nus.iss.vmcs.builder.MachineryPanelBuilder;
+import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
+import sg.edu.nus.iss.vmcs.machinery.Door;
+import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
+import sg.edu.nus.iss.vmcs.system.CustomerSimulatorPanel;
 import sg.edu.nus.iss.vmcs.system.MainController;
+import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 public class TransactionController {
 	
@@ -9,10 +19,16 @@ public class TransactionController {
 	private Integer price;
 	private Integer selection;
 	
+	public MainController mainCtrl;
+	private CustomerSimulatorPanel sm;
+	private CoinReceiver coinReceiver;
 	
-	public TransactionController()
+	public void initialize() throws VMCSException {
+		coinReceiver = new CoinReceiver(this);
+	}
+	public TransactionController(MainController mainController)
 	{
-		
+		mainCtrl = mainController;
 	}
 	
 	public Boolean getChange_given() {
@@ -55,7 +71,7 @@ public class TransactionController {
 	}
 
 
-	public void startTransaction()
+	public void startTransaction(Integer identifier)
 	{
 	//	the price of the selected item is obtained.
 	//	the refund/change tray display is reset.
@@ -64,12 +80,12 @@ public class TransactionController {
 	// the coin receiver will be instructed to start receiving the coins
 	}
 	
-	public void processMoneyReceived(Integer identifier)
+	public void processMoneyReceived(Integer total)
 	{
 		
 	}
 	
-	public void completeTransaction(Integer total)
+	public void completeTransaction()
 	{
 		
 	}
@@ -93,11 +109,26 @@ public class TransactionController {
 	{
 		
 	}
-	public void displayCustomerPanel(MainController mainController)
+	public void displayCustomerPanel()
 	{
+		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		/*if (sm == null)
+			sm = new CustomerSimulatorPanel(coinReceiver);
+
+		sm.display();*/
+		//System.out.println("get door status:" + door.isDoorClosed());
+		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		
+		
+		PanelSetupController builder=new PanelSetupController();
+		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
+		builder.constractPanel();
+		builder.getPanel().setVisible(true);
+		//System.out.println("get door status:" + door.isDoorClosed());
+		
 		
 	}
-	public void refreshCustomerPanel(MainController mainController)
+	public void refreshCustomerPanel()
 	{
 		
 	}
