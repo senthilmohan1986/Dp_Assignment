@@ -162,6 +162,8 @@ public class MaintenancePanel extends Dialog {
 				password.setActive(st);
 				break;
 		}
+		this.repaint();
+		this.setVisible(true);
 	}
 
 	public int getCurIdx() {

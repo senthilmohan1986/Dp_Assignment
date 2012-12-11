@@ -44,10 +44,10 @@ public class MaintenanceController {
 	 */
 	public void displayMaintenancePanel() {
 		SimulatorControlPanel scp = mCtrl.getSimulatorControlPanel();
-		if (mpanel == null)
-			mpanel = new MaintenancePanel((Frame) scp, this);
-		mpanel.display();
-		mpanel.setActive(MaintenancePanel.DIALOG, true);
+//		if (mpanel == null)
+//			mpanel = new MaintenancePanel((Frame) scp, this);
+//		mpanel.display();
+//		mpanel.setActive(MaintenancePanel.DIALOG, true);
 		// setActive of password, invalid and valid display.
 		
 		PanelSetupController builder=new PanelSetupController();
