@@ -29,7 +29,7 @@ public class MachinerySimulatorPanel extends Dialog {
 	private Checkbox doorDisplay;
 	private StoreController storeCtrl;
 	private MachineryController machineryCtrl;
-
+	private Panel mainPanel=new Panel();
 	public MachinerySimulatorPanel(Frame fr, MachineryController machCtrl) {
 		super(fr, TITLE, false);
 
@@ -54,10 +54,11 @@ public class MachinerySimulatorPanel extends Dialog {
 		doorDisplay.setLabel("Door Locked");
 		dp.add(doorDisplay);
 
-		this.setLayout(new BorderLayout());
-		this.add("North", lb);
-		this.add("Center", tp);
-		this.add("South", dp);
+		mainPanel.setLayout(new BorderLayout());
+		mainPanel.add("North", lb);
+		mainPanel.add("Center", tp);
+		mainPanel.add("South", dp);
+		add(mainPanel);
 		pack();
 
 		addWindowListener(new WindowAdapter() {
@@ -86,13 +87,24 @@ public class MachinerySimulatorPanel extends Dialog {
 	public void setDoorState(boolean state) {
 		doorDisplay.setState(state);
 		this.setActive(!state);
-
+		this.repaint();
+		this.setVisible(true); 
+		
+  
 	}
 
 	public void setActive(boolean state) {
 		cashDisplay.setActive(state);
 		drinksDisplay.setActive(state);
 		doorDisplay.setEnabled(state);
+	}
+
+	public Panel getMainPanel() {
+		return mainPanel;
+	}
+
+	public void setMainPanel(Panel mainPanel) {
+		this.mainPanel = mainPanel;
 	}
 
 }
