@@ -21,10 +21,17 @@ import java.awt.*;
 public class PasswordListener implements ActionListener {
 
 	AccessManager actrl;
+	MaintenancePanel mp;
 
 	public PasswordListener(AccessManager ac) {
 		actrl = ac;
 	}
+	
+	public PasswordListener(AccessManager ac,MaintenancePanel mp) {
+		actrl = ac;
+		this.mp=mp;
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		TextField text;
 
@@ -33,5 +40,6 @@ public class PasswordListener implements ActionListener {
 		text = (TextField) e.getSource();
 		pswd = text.getText();
 		actrl.processPassword(pswd);
+		mp.setActive(1, true);
 	}
 }

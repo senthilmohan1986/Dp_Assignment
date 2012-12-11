@@ -35,8 +35,7 @@ public class ActivateCustomerPanelButtonListener implements ActionListener {
 	}
 	public void actionPerformed(ActionEvent e) {
 		/**@todo: Implement this java.awt.event.ActionListener method*/
-		System.out.println("Inside the Customer Panel");
-//		ctrl.setupSimulator();
+	
 		
 		simCtrl.setupCustomerPanel();
 		

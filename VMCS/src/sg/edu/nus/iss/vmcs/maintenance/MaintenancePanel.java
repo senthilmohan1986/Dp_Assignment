@@ -52,7 +52,7 @@ public class MaintenancePanel extends Dialog {
 		tpn.setLayout(new GridLayout(0, 1));
 
 		password = new LabelledDisplay("Password:", 30, LabelledDisplay.FLOW);
-		PasswordListener pl = new PasswordListener(mc.getAccessManager());
+		PasswordListener pl = new PasswordListener(mc.getAccessManager(),this);
 		password.addListener(pl);
 
 		Panel tp3 = new Panel();

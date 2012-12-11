@@ -53,7 +53,8 @@ public class MaintenanceController {
 		PanelSetupController builder=new PanelSetupController();
 		builder.setPanelBuilder(new MaintainerPanelBuilder((Frame) scp,this));
 		builder.constractPanel();
-		builder.getPanel().setVisible(true);
+		this.mpanel=(MaintenancePanel)builder.getPanel();
+		mpanel.setVisible(true);
 		
 	}
 
