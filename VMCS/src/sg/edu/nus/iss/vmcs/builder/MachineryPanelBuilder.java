@@ -12,7 +12,7 @@ import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 
 public class MachineryPanelBuilder extends PanelBuilder {
 
-	public Dialog panel;
+	public MachinerySimulatorPanel panel;
 	
 	public MachineryPanelBuilder (Frame scp,MachineryController machineryController) 
 	{
@@ -29,8 +29,11 @@ public class MachineryPanelBuilder extends PanelBuilder {
 	@Override
 	public void buildControls() {
 		// TODO Auto-generated method stub
-		
-		
+		panel.setActive(true);
+		panel.setDoorState(false);
+		refreshPanel(panel);
+		panel.getMainPanel().repaint();
+		panel.getMainPanel().setVisible(true);
 	}
 
 	@Override

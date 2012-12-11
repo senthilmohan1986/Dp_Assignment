@@ -24,6 +24,7 @@ public class PanelSetupController {
 	public void constractPanel()
 	{
 		builder.buildDisplay();
+		builder.buildControls();
 		builder.buildPanel();
 		
 	}

@@ -10,7 +10,7 @@ import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 
 public class MaintainerPanelBuilder extends PanelBuilder {
 
-	public Dialog panel;
+	public MaintenancePanel panel;
 	
 	
 	public MaintainerPanelBuilder(Frame scp,MaintenanceController maintenanceController) {
@@ -28,6 +28,9 @@ public class MaintainerPanelBuilder extends PanelBuilder {
 		// TODO Auto-generated method stu
 		    JLabel lblCollectCash=new JLabel("Collect Cash");
 		    panel.add(lblCollectCash);
+		    panel.setActive(1, false);
+		    panel.repaint();
+		    panel.setVisible(true);
 	}
 
 	@Override
