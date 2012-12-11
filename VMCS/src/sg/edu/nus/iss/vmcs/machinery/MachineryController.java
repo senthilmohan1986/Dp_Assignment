@@ -58,9 +58,9 @@ public class MachineryController {
 		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
 		if (ml == null)
 			ml = new MachinerySimulatorPanel(scp, this);
-		ml.display();
+		//ml.display();
 		//System.out.println("get door status:" + door.isDoorClosed());
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
+		//scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
 		
 		
 		PanelSetupController builder=new PanelSetupController();
