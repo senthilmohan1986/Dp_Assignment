@@ -6,7 +6,7 @@ import java.util.List;
 
 import sg.edu.nus.iss.vmcs.store.CashStore;
 import sg.edu.nus.iss.vmcs.store.Coin;
-import sg.edu.nus.iss.vmcs.system.CustomerSimulatorPanel;
+
 
 public class CoinReceiver implements Subject{
 

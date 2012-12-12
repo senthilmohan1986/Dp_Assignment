@@ -8,7 +8,6 @@ import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
 import sg.edu.nus.iss.vmcs.customer.terminate.ITerminateStrategy;
 import sg.edu.nus.iss.vmcs.machinery.Door;
 import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
-import sg.edu.nus.iss.vmcs.system.CustomerSimulatorPanel;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
@@ -21,7 +20,6 @@ public class TransactionController {
 	private Integer selection;
 	
 	public MainController mainCtrl;
-	private CustomerSimulatorPanel sm;
 	private CustomerPanel customerPanel;
 	private CoinReceiver coinReceiver;
 	
