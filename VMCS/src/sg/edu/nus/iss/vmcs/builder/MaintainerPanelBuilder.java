@@ -3,6 +3,7 @@ package sg.edu.nus.iss.vmcs.builder;
 import java.awt.Dialog;
 import java.awt.Frame;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
@@ -18,9 +19,12 @@ public class MaintainerPanelBuilder extends PanelBuilder {
 		panel=new MaintenancePanel(scp, maintenanceController);
 	}
 
-	public void buildPanel(Frame f, MaintenanceController c) {
+	public void buildPanel() {
 		// TODO Auto-generated method stub
-		panel=new MaintenancePanel(f, c);
+		//panel=new MaintenancePanel(f, c);
+		
+		ImageIcon img=new ImageIcon("settings.png");
+		panel.setIconImage(img.getImage());
 	}
 
 	@Override
@@ -57,10 +61,6 @@ public class MaintainerPanelBuilder extends PanelBuilder {
 		return panel;
 	}
 
-	@Override
-	public void buildPanel() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

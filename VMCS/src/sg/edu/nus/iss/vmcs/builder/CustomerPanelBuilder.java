@@ -3,12 +3,17 @@ package sg.edu.nus.iss.vmcs.builder;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Frame;
+import java.awt.Image;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.swing.ImageIcon;
+
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
+import sg.edu.nus.iss.vmcs.customer.TerminateButtonListener;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 
 
@@ -34,8 +39,8 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	@Override
 	public void buildPanel() {
 		// TODO Auto-generated method stub
-	
-		
+	   ImageIcon img=new ImageIcon("marker2.png");
+		panel.setIconImage(img.getImage());
 		
 		
 	}
@@ -43,7 +48,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	@Override
 	public void buildControls() {
 		// TODO Auto-generated method stub
-		
+		panel.getBtnTerminate().addActionListener(new TerminateButtonListener(panel)); 
 	}
 
 	@Override
