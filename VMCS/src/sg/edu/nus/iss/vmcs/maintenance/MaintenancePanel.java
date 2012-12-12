@@ -42,6 +42,10 @@ public class MaintenancePanel extends Dialog {
 
 		mctrl = mc;
 
+		initialize();
+	}
+
+	public void initialize() {
 		// north part
 		Label lb = new Label(TITLE);
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
@@ -52,7 +56,7 @@ public class MaintenancePanel extends Dialog {
 		tpn.setLayout(new GridLayout(0, 1));
 
 		password = new LabelledDisplay("Password:", 30, LabelledDisplay.FLOW);
-		PasswordListener pl = new PasswordListener(mc.getAccessManager(),this);
+		PasswordListener pl = new PasswordListener(this.mctrl.getAccessManager(),this);
 		password.addListener(pl);
 
 		Panel tp3 = new Panel();
