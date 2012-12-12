@@ -205,4 +205,10 @@ public class StoreController {
 		for (int i = 0; i < numOfCoins; i++)
 			item.decrement();
 	}
+	
+	private static StoreController storeController;
+
+	public static StoreController getInstanceStoreController() {
+		return storeController;
+	}
 }

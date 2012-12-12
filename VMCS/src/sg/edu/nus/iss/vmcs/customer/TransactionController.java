@@ -176,7 +176,6 @@ public class TransactionController {
 
 	public void createChangeGiver(){
 		ChangeGiver cg = new ChangeGiver();
-		StoreController storeController = cg.getInstanceStoreController();
 		
 	}
 
