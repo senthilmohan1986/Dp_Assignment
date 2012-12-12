@@ -23,7 +23,7 @@ public class MaintainerPanelBuilder extends PanelBuilder {
 		// TODO Auto-generated method stub
 		//panel=new MaintenancePanel(f, c);
 		
-		ImageIcon img=new ImageIcon("settings.png");
+		ImageIcon img=new ImageIcon("tools.png");
 		panel.setIconImage(img.getImage());
 	}
 

@@ -2,8 +2,10 @@ package sg.edu.nus.iss.vmcs.builder;
 
 import java.awt.Color;
 import java.awt.Dialog;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.Label;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import sg.edu.nus.iss.vmcs.customer.TransactionController;
 
 public class CustomerPanelBuilder  extends PanelBuilder {
 
+
 	Properties p=new Properties();
 	CustomerPanel panel;
 	public CustomerPanelBuilder(){
@@ -31,7 +34,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 			TransactionController customerPanelController) {
 		// TODO Auto-generated constructor stub
 		panel=new CustomerPanel(scp, customerPanelController);
-		 p=new Properties();
+		p=new Properties();
 	}
 
 
@@ -39,8 +42,13 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	@Override
 	public void buildPanel() {
 		// TODO Auto-generated method stub
-	   ImageIcon img=new ImageIcon("marker2.png");
+	
+		
+	   ImageIcon img=new ImageIcon("drink.png");
 		panel.setIconImage(img.getImage());
+		
+		
+		panel.initComponent();
 		
 		
 	}
