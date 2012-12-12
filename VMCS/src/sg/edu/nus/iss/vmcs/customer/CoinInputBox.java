@@ -50,6 +50,24 @@ public class CoinInputBox extends Panel {
 	private ObserverLabel totalCost;
 	
 	
+	
+	
+	public ObserverLabel getInvalidCoin() {
+		return invalidCoin;
+	}
+
+	public void setInvalidCoin(ObserverLabel invalidCoin) {
+		this.invalidCoin = invalidCoin;
+	}
+
+	public ObserverLabel getTotalCost() {
+		return totalCost;
+	}
+
+	public void setTotalCost(ObserverLabel totalCost) {
+		this.totalCost = totalCost;
+	}
+
 	public TransactionController getTransCtrl() {
 		return transCtrl;
 	}

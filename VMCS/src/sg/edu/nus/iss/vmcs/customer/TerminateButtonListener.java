@@ -16,9 +16,9 @@ public class TerminateButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	    String amount=customerPanel.getCoinInputBox().getTxtInserted().getText();
+	    String amount=customerPanel.getCoinInputBox().getTotalCost().getLabel().getText();
 	    customerPanel.getTxtCollectCoin().setText(amount);
-	    customerPanel.getCoinInputBox().getTxtInserted().setText("0.00");
+	    customerPanel.getCoinInputBox().getTotalCost().getLabel().setText("0.00");
 	    
 	}
 

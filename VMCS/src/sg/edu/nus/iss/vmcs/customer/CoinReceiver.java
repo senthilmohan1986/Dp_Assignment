@@ -41,8 +41,8 @@ public class CoinReceiver implements Subject{
 		CustomerPanel customerPanel=transactionController.getCustomerPanel();
 		customerPanel.getTxtCollectCoin().setText(customerPanel.getCoinInputBox().getTotalAmount() + " C");
 		customerPanel.getCoinInputBox().setTotalAmount(0);
-	//	customerPanel.getCoinInputBox().getTxtInserted().setText("0 "+ "C");
-	//	customerPanel.getCoinInputBox().getTxtInvalidCoin().setBackground(Color.white);
+		customerPanel.getCoinInputBox().getTotalCost().getLabel().setText("0 "+ "C");
+		customerPanel.getCoinInputBox().getInvalidCoin().getLabel().setBackground(Color.white);
 		System.out.println("refund cash");
 		
 	}
