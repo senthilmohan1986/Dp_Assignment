@@ -36,6 +36,10 @@ public class MachinerySimulatorPanel extends Dialog {
 		machineryCtrl = machCtrl;
 		storeCtrl = machineryCtrl.getMainController().getStoreController();
 
+		initialize();
+	}
+
+	public void initialize() {
 		Label lb = new Label(TITLE);
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
 		lb.setAlignment(Label.CENTER);
