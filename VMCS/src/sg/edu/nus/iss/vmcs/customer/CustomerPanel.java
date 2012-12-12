@@ -43,7 +43,7 @@ public class CustomerPanel extends Dialog {
 		// TODO Auto-generated constructor stub
 		this.transCtrl= transCtrl;
 		coinInputBox = new CoinInputBox(transCtrl);
-		initComponent();
+		
 		
 	}
 	
