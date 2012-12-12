@@ -63,7 +63,7 @@ public class MainController {
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
 			transactionCtrl=new TransactionController(this);
-			transactionCtrl.initialize();
+		//	transactionCtrl.initialize();
 			
 		} catch (IOException e) {
 			throw new VMCSException(

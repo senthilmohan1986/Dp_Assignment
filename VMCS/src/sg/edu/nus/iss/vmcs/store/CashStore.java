@@ -34,15 +34,15 @@ public class CashStore extends Store {
 	}
 	
 	public Coin findCoin(double weight){
-		if (weight == 42.2) {
+		if (weight == 100) {
 			return new Coin(100, 42.2);
-		}else if (weight == 35.0){
+		}else if (weight == 50){
 			return new Coin(50, 35.2);
-		}else if(weight == 18.5){
+		}else if(weight == 20){
 			return new Coin(20, 18.5);
-		}else if(weight == 10.9){
+		}else if(weight == 10){
 			return new Coin(10, 10.9);
-		}else if(weight == 7.1){
+		}else if(weight == 5){
 			return new Coin(5, 7.1);
 		}else{
 			return null;

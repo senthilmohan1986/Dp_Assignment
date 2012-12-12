@@ -22,6 +22,13 @@ public abstract class ObserverLabel extends Observer {
 		add(label);
 	}
 	
+	public ObserverLabel(Subject subject) {
+		this.sub = subject;
+		sub.addObserver(this);
+		label = new JLabel();
+		add(label);
+	}
+	
 	public JLabel getLabel() {
 		return label;
 	}

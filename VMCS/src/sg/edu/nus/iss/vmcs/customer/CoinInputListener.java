@@ -1,6 +1,5 @@
 package sg.edu.nus.iss.vmcs.customer;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +8,8 @@ public class CoinInputListener implements ActionListener {
 	private CoinType coinType;
 	private int number;
 	private int totalAMount;
+	
+	private CoinReceiver receiver;
 	public CoinInputBox getBox() {
 		return box;
 	}
@@ -18,18 +19,19 @@ public class CoinInputListener implements ActionListener {
 	}
 
 	private CoinInputBox box;
-    public CoinInputListener(CoinInputBox box,CoinType CoinType)
+    public CoinInputListener( CoinReceiver receiver, CoinInputBox box,CoinType CoinType)
     {
     	this.box=box;
     	this.coinType=CoinType;
-    	
+    	this.receiver = receiver;
     }
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
-		if(this.getCoinType().getValue()!=-1)
+		receiver.ReceiveCoin(this.getCoinType().getValue());
+		
+	/*	if(this.getCoinType().getValue()!=-1)
 		{
 	
 		this.totalAMount=box.getTotalAmount()+getCoinType().getValue();
@@ -46,7 +48,7 @@ public class CoinInputListener implements ActionListener {
 			box.getTxtInvalidCoin().setBackground(Color.red);
 			
 			
-		}
+		}*/
 	}
 
 

@@ -1,16 +1,23 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import java.awt.Button;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.TextField;
+import java.text.DecimalFormat;
 
 import javax.swing.BoxLayout;
-import java.awt.Button;
+
+import sg.edu.nus.iss.vmcs.store.Coin;
 public class CoinInputBox extends Panel {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private TransactionController transCtrl;
+	
+	private CoinReceiver receiver;
 	
 	public int totalAmount;
 	
@@ -34,23 +41,35 @@ public class CoinInputBox extends Panel {
 	private Button btnOneDollar;
 	private Button btnInvalidCoin;
 	
-	private TextField txtInvalidCoin;
+	//private TextField txtInvalidCoin;
 	private Label lbalTotalInserted;
-	private TextField txtInserted;
+	//private TextField txtInserted;
+	
+	private ObserverLabel invalidCoin;
+	
+	private ObserverLabel totalCost;
 	
 	
-	
-	
-	
-	public CoinInputBox() {
+	public TransactionController getTransCtrl() {
+		return transCtrl;
+	}
+
+	public void setTransCtrl(TransactionController transCtrl) {
+		this.transCtrl = transCtrl;
+	}
+
+	public CoinInputBox(TransactionController transCtrl) {
 		super();
+		this.transCtrl = transCtrl;
+		 this.receiver = new CoinReceiver(transCtrl, this);
+		 
+		CoinInputListener fiveCentListener=new CoinInputListener(receiver, this,CoinType.FIVE);
+		CoinInputListener tenCentListener=new CoinInputListener(receiver, this,CoinType.TEN);
+		CoinInputListener twentyCentListener=new CoinInputListener(receiver, this,CoinType.TWENTY);
+		CoinInputListener fiftyCentListener=new CoinInputListener(receiver, this,CoinType.FIFTY);
+		CoinInputListener oneDollarListener=new CoinInputListener(receiver, this,CoinType.ONE_DOLLAR);
+		CoinInputListener invalidCoinListener=new CoinInputListener(receiver, this,CoinType.INVALID);
 		
-		CoinInputListener fiveCentListener=new CoinInputListener(this,CoinType.FIVE);
-		CoinInputListener tenCentListener=new CoinInputListener(this,CoinType.TEN);
-		CoinInputListener twentyCentListener=new CoinInputListener(this,CoinType.TWENTY);
-		CoinInputListener fiftyCentListener=new CoinInputListener(this,CoinType.FIFTY);
-		CoinInputListener oneDollarListener=new CoinInputListener(this,CoinType.ONE_DOLLAR);
-		CoinInputListener invalidCoinListener=new CoinInputListener(this,CoinType.INVALID);
 		txtEnterCoinHere=new Label("Enter coin here: ");
 		 btnFiveCent=new Button("5 ¢");
 		 
@@ -62,13 +81,54 @@ public class CoinInputBox extends Panel {
 		 btnTwentyCent.addActionListener(twentyCentListener);
 		 btnOneDollar=new Button("1 $");
 		 btnFiftyCent.addActionListener(fiftyCentListener);
-		 btnInvalidCoin=new Button("Invalid");
+		 btnInvalidCoin=new Button("3 $");
 		 btnOneDollar.addActionListener(oneDollarListener);
 		 btnInvalidCoin.addActionListener(invalidCoinListener);
 		 
-		 txtInvalidCoin=new TextField("Invalid Coin");
+		
+		 
+		 invalidCoin = new ObserverLabel("Invalid Coin", receiver) {
+			
+			@Override
+			public void update(boolean status, Coin o) {
+				System.out.println("Success for invalid");
+				if (o == null) {
+					this.getLabel().setBackground(Color.red);
+				//	this.getLabel().setText("Success");
+					this.getLabel().setOpaque(true);
+					this.getParent().repaint();
+				}
+			}
+		};
+		 
+		// txtInvalidCoin=new TextField("Invalid Coin");
 			lbalTotalInserted=new Label("Total Money Inserted");	
-			txtInserted=new TextField("");
+			
+			totalCost = new ObserverLabel("00.00",receiver) {
+				
+				@Override
+				public void update(boolean status, Coin o) {
+					System.out.println("success for total amt");
+					 DecimalFormat df = new DecimalFormat("##.##");
+					if (o != null) {
+						double presentValue = 0;
+						if (this.getLabel().getText() != null &&  !this.getLabel().getText().isEmpty()) {
+							presentValue = Double.parseDouble(this.getLabel().getText());
+						}
+						Double totalValue = presentValue + o.getValue()/ 100f;
+						//this.getLabel().setBackground(Color.red);
+						this.getLabel().setPreferredSize(new Dimension(100, 20));
+						System.out.println(Double.toString(totalValue));
+						this.getLabel().setText(df.format(totalValue));
+						
+						this.getLabel().setOpaque(true);
+						this.getParent().repaint();
+
+					}
+				}
+			};
+		
+		//	txtInserted=new TextField("");
 	     setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
 	     add(txtEnterCoinHere);
 	     Panel coin=new Panel(new FlowLayout());
@@ -79,14 +139,14 @@ public class CoinInputBox extends Panel {
 		coin. add(btnOneDollar);
 		coin. add(btnInvalidCoin);
 		add(coin);
-		 Panel invalid=new Panel();
-		 invalid.add(txtInvalidCoin);
-		 add(invalid);
-		 Panel inserted=new Panel();
+		/* Panel invalid=new Panel();
+		 invalid.add(txtInvalidCoin);*/
+		 add(invalidCoin);
+		/* Panel inserted=new Panel();
 		 inserted.add(lbalTotalInserted);
 		 txtInserted.setPreferredSize(new Dimension(100,20));
-		 inserted.add(txtInserted);
-		 add(inserted);
+		 inserted.add(txtInserted);*/
+		 add(totalCost);
 		 
 		
 	}
@@ -126,24 +186,24 @@ public class CoinInputBox extends Panel {
 	public void setBtnInvalidCoin(Button btnInvalidCoin) {
 		this.btnInvalidCoin = btnInvalidCoin;
 	}
-	public TextField getTxtInvalidCoin() {
+	/*public TextField getTxtInvalidCoin() {
 		return txtInvalidCoin;
 	}
 	public void setTxtInvalidCoin(TextField txtInvalidCoin) {
 		this.txtInvalidCoin = txtInvalidCoin;
-	}
+	}*/
 	public Label getLbalTotalInserted() {
 		return lbalTotalInserted;
 	}
 	public void setLbalTotalInserted(Label lbalTotalInserted) {
 		this.lbalTotalInserted = lbalTotalInserted;
 	}
-	public TextField getTxtInserted() {
+	/*public TextField getTxtInserted() {
 		return txtInserted;
 	}
 	public void setTxtInserted(TextField txtInserted) {
 		this.txtInserted = txtInserted;
-	}
+	}*/
 	
 
 }

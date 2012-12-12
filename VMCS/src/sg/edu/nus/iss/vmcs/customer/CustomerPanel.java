@@ -15,8 +15,6 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 
-import sg.edu.nus.iss.vmcs.system.CustomerPanelTerminateButtonListener;
-
 public class CustomerPanel extends Dialog {
 
 	/**
@@ -26,7 +24,7 @@ public class CustomerPanel extends Dialog {
 	
 	
 	private TransactionController transCtrl;
-	private CoinInputBox coinInputBox=new CoinInputBox();
+	private CoinInputBox coinInputBox;
 	private DrinkSelectionBox drinkSelectionBox=new DrinkSelectionBox();
 	private Button btnTerminate=new Button("Terminate and Return Cash");
 	private TextField txtNoChangeAvail=new TextField("No Change Available");
@@ -40,7 +38,9 @@ public class CustomerPanel extends Dialog {
 		super(owner);
 		// TODO Auto-generated constructor stub
 		this.transCtrl= transCtrl;
+		coinInputBox = new CoinInputBox(transCtrl);
 		initComponent();
+		
 	}
 	
 	

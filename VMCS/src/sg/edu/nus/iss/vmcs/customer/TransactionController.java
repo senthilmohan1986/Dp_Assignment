@@ -37,9 +37,9 @@ public class TransactionController {
 	public void setCoinReceiver(CoinReceiver coinReceiver) {
 		this.coinReceiver = coinReceiver;
 	}
-	public void initialize() throws VMCSException {
+	/*public void initialize() throws VMCSException {
 		coinReceiver = new CoinReceiver(this);
-	}
+	}*/
 	public TransactionController(MainController mainController)
 	{
 		mainCtrl = mainController;
