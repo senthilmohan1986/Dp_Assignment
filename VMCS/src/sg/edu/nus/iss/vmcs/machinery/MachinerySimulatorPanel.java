@@ -30,38 +30,40 @@ public class MachinerySimulatorPanel extends Dialog {
 	private StoreController storeCtrl;
 	private MachineryController machineryCtrl;
 	private Panel mainPanel=new Panel();
+	private Panel topPanel = new Panel();
+	private Panel downPanel = new Panel();
+	
+	
 	public MachinerySimulatorPanel(Frame fr, MachineryController machCtrl) {
 		super(fr, TITLE, false);
 
 		machineryCtrl = machCtrl;
 		storeCtrl = machineryCtrl.getMainController().getStoreController();
 
-		initialize();
+		//initialize();
 	}
 
-	public void initialize() {
-		Label lb = new Label(TITLE);
-		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
-		lb.setAlignment(Label.CENTER);
+public void initialize() {
+		
 
 		cashDisplay = new StoreViewer(Store.CASH, storeCtrl);
 		drinksDisplay = new StoreViewer(Store.DRINK, storeCtrl);
 
-		Panel tp = new Panel();
-		tp.setLayout(new GridLayout(0, 1));
-		tp.add(cashDisplay);
-		tp.add(drinksDisplay);
+		
+		topPanel.setLayout(new GridLayout(0, 1));
+		topPanel.add(cashDisplay);
+		topPanel.add(drinksDisplay);
 
-		Panel dp = new Panel();
+		
 		doorDisplay = new Checkbox();
 		doorDisplay.addItemListener(new DoorListener(machineryCtrl));
 		doorDisplay.setLabel("Door Locked");
-		dp.add(doorDisplay);
+		downPanel.add(doorDisplay);
 
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add("North", lb);
-		mainPanel.add("Center", tp);
-		mainPanel.add("South", dp);
+		//mainPanel.add("North", lb);
+		mainPanel.add("Center", topPanel);
+		mainPanel.add("South", downPanel);
 		add(mainPanel);
 		pack();
 
@@ -71,6 +73,7 @@ public class MachinerySimulatorPanel extends Dialog {
 			}
 		});
 	}
+
 
 	public void display() {
 		this.setVisible(true);
@@ -109,6 +112,22 @@ public class MachinerySimulatorPanel extends Dialog {
 
 	public void setMainPanel(Panel mainPanel) {
 		this.mainPanel = mainPanel;
+	}
+
+	public Panel getTopPanel() {
+		return topPanel;
+	}
+
+	public void setTopPanel(Panel topPanel) {
+		this.topPanel = topPanel;
+	}
+
+	public Panel getDownPanel() {
+		return downPanel;
+	}
+
+	public void setDownPanel(Panel downPanel) {
+		this.downPanel = downPanel;
 	}
 
 }

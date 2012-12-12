@@ -16,6 +16,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 
+import sg.edu.nus.iss.vmcs.util.WarningDisplay;
+
 public class CustomerPanel extends Dialog {
 
 	/**
@@ -31,7 +33,8 @@ public class CustomerPanel extends Dialog {
 	private CoinInputBox coinInputBox;
 	private DrinkSelectionBox drinkSelectionBox=new DrinkSelectionBox();
 	private Button btnTerminate=new Button("Terminate and Return Cash");
-	private TextField txtNoChangeAvail=new TextField("No Change Available");
+	//private TextField txtNoChangeAvail=new TextField("No Change Available");
+	private WarningDisplay warnNoChange;
 	private Label lblCollectCoins=new Label("Collect Coins: ");
 	private TextField txtCollectCoin=new TextField("0 C");
 	private Label lblCollectCan=new Label("Collect Can Here: ");
@@ -43,7 +46,7 @@ public class CustomerPanel extends Dialog {
 		// TODO Auto-generated constructor stub
 		this.transCtrl= transCtrl;
 		coinInputBox = new CoinInputBox(transCtrl);
-		
+		warnNoChange=new WarningDisplay("No Change Available");
 		
 	}
 	
@@ -80,9 +83,9 @@ public class CustomerPanel extends Dialog {
 		BorderLayout border=new BorderLayout();
 		
 		nochange.setLayout(border);
-		txtNoChangeAvail.setPreferredSize(new Dimension(10,50));
+		warnNoChange.setPreferredSize(new Dimension(10,50));
 		
-		nochange.add(txtNoChangeAvail,BorderLayout.NORTH);
+		nochange.add(warnNoChange,BorderLayout.NORTH);
 		nochange.add(btnTerminate,BorderLayout.SOUTH);
 		p.add(nochange);
 		btnTerminate.addActionListener(new CustomerPanelTerminateButtonListener(transCtrl));
@@ -138,10 +141,7 @@ public class CustomerPanel extends Dialog {
 	}
 
 
-	public TextField getTxtNoChangeAvail() {
-		return txtNoChangeAvail;
-	}
-
+	
 
 	public Label getLblCollectCoins() {
 		return lblCollectCoins;
@@ -178,9 +178,6 @@ public class CustomerPanel extends Dialog {
 	}
 
 
-	public void setTxtNoChangeAvail(TextField txtNoChangeAvail) {
-		this.txtNoChangeAvail = txtNoChangeAvail;
-	}
 
 
 	public void setLblCollectCoins(Label lblCollectCoins) {
