@@ -5,6 +5,7 @@ import java.awt.Button;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -21,6 +22,9 @@ public class CustomerPanel extends Dialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 9210551434582978969L;
+
+
+	private static final String VIMTO_SOFT_DRINK_DISPENSER = "VIMTO SOFT DRINK DISPENSER";
 	
 	
 	private TransactionController transCtrl;
@@ -50,6 +54,21 @@ public class CustomerPanel extends Dialog {
 		
 		this.setLayout(fl);
 		Panel p=new Panel();
+		
+		Font f=new Font("ARIAL", 0, 18);
+		Label header=new Label(VIMTO_SOFT_DRINK_DISPENSER);
+		header.setFont(f);
+	
+		Panel pt=new Panel(new FlowLayout());
+		pt.add(header);
+	
+		
+		
+		//add(pt,BorderLayout.NORTH);
+		
+		
+		
+		
 		p.setLayout(new GridLayout(0,1));
 		p.add(coinInputBox);
 		p.add(drinkSelectionBox);
