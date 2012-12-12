@@ -1,7 +1,6 @@
 package sg.edu.nus.iss.vmcs.system;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,24 +11,17 @@ import javax.swing.JPanel;
 
 import sg.edu.nus.iss.vmcs.customer.CoinReceiver;
 import sg.edu.nus.iss.vmcs.customer.ObserverLabel;
-import sg.edu.nus.iss.vmcs.customer.TransactionController;
-import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.Coin;
 
 public class CustomerSimulatorPanel extends JPanel{
-	
-	public CustomerSimulatorPanel(Frame fr, TransactionController transCtrl)
-	{
-		
-	}
-	
+
 	public CustomerSimulatorPanel(final CoinReceiver sub) {
 		
 		
 		
         JLabel label1, label2;
         
-/*        JPanel chummaPanel =  new ObserverLabel("Invalid label", sub) {
+        JPanel chummaPanel =  new ObserverLabel("Invalid label", sub) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -47,14 +39,14 @@ public class CustomerSimulatorPanel extends JPanel{
 				}
 				
 			}
-		};*/
+		};
         
         JButton button = new JButton("Enter Value");
         button.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//sub.ReceiveCoin(35.0);
+				sub.ReceiveCoin(35.0);
 			}
 		});
         
@@ -82,7 +74,7 @@ public class CustomerSimulatorPanel extends JPanel{
         //Add the labels.
         add(label1);
         add(label2);
-        //add(chummaPanel);
+        add(chummaPanel);
         add(button);
 	}
 	
