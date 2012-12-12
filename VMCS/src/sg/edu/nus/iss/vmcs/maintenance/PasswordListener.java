@@ -40,6 +40,7 @@ public class PasswordListener implements ActionListener {
 		text = (TextField) e.getSource();
 		pswd = text.getText();
 		actrl.processPassword(pswd);
-		mp.setActive(1, true);
+		
+		mp.setActive(1, actrl.getLoginState());
 	}
 }
