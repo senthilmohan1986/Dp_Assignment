@@ -25,6 +25,12 @@ public class CoinReceiver implements Subject{
 		this.coinInputBox = box;
 		observers = new ArrayList<Observer>();
 	}
+	
+	public CoinReceiver(TransactionController transactionController) {
+		this.transactionController = transactionController;
+		this.coins = new ArrayList<Coin>();
+		observers = new ArrayList<Observer>();
+	}
 
 
 	public TransactionController getTransactionController() {

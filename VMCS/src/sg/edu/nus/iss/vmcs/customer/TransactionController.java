@@ -3,11 +3,9 @@ package sg.edu.nus.iss.vmcs.customer;
 import java.awt.Frame;
 
 import sg.edu.nus.iss.vmcs.builder.CustomerPanelBuilder;
-import sg.edu.nus.iss.vmcs.builder.MachineryPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
 import sg.edu.nus.iss.vmcs.customer.terminate.ITerminateStrategy;
-import sg.edu.nus.iss.vmcs.machinery.Door;
-import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
+import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
@@ -29,17 +27,21 @@ public class TransactionController {
 	
 
 	
+	
 	public void initialize() throws VMCSException {
 		coinReceiver = new CoinReceiver(this);
 		dispenseController = new DispenseController(this);
 	}
+
+	/*public void initialize() throws VMCSException {
+		coinReceiver = new CoinReceiver(this);
+	}*/
 	
 	public TransactionController(MainController mainController)
 	{
 		mainCtrl = mainController;
 	}
-	
-	
+
 
 	public void startTransaction(Integer identifier)
 	{
@@ -67,12 +69,14 @@ public class TransactionController {
 	
 	public void termianteTransaction()
 	{
-		
+		terminateStrategy.terminate(this);
+
 	}
 	
 	public void cancelTransaction()
 	{
-		terminateStrategy.terminate(this);
+		
+
 	}
 	
 	public void closeDown()
@@ -170,6 +174,11 @@ public class TransactionController {
 		return mainCtrl;
 	}
 
-	
+	public void createChangeGiver(){
+		ChangeGiver cg = new ChangeGiver();
+		StoreController storeController = cg.getInstanceStoreController();
+		
+	}
+
 }
 	
