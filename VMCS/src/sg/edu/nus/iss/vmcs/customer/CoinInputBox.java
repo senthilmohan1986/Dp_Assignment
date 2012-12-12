@@ -43,15 +43,33 @@ public class CoinInputBox extends Panel {
 	
 	//private TextField txtInvalidCoin;
 	private Label lbalTotalInserted;
+	
+	private Label refundLabel;
 	//private TextField txtInserted;
 	
 	private ObserverLabel invalidCoin;
 	
 	private ObserverLabel totalCost;
 	
+	private ObserverLabel refundCost;
+
 	
-	
-	
+	public Label getRefundLabel() {
+		return refundLabel;
+	}
+
+	public void setRefundLabel(Label refundLabel) {
+		this.refundLabel = refundLabel;
+	}
+
+	public ObserverLabel getRefundCost() {
+		return refundCost;
+	}
+
+	public void setRefundCost(ObserverLabel refundCost) {
+		refundCost = refundCost;
+	}
+
 	public ObserverLabel getInvalidCoin() {
 		return invalidCoin;
 	}
@@ -78,6 +96,7 @@ public class CoinInputBox extends Panel {
 
 	public CoinInputBox(TransactionController transCtrl) {
 		super();
+		setBackground(Color.LIGHT_GRAY);
 		this.transCtrl = transCtrl;
 		 this.receiver = new CoinReceiver(transCtrl, this);
 		 
@@ -105,14 +124,19 @@ public class CoinInputBox extends Panel {
 		 
 		
 		 
-		 invalidCoin = new ObserverLabel("Invalid Coin", receiver) {
+		 invalidCoin = new ObserverLabel("Coin Validation", receiver) {
 			
 			@Override
 			public void update(boolean status, Coin o) {
 				System.out.println("Success for invalid");
 				if (o == null) {
 					this.getLabel().setBackground(Color.red);
-				//	this.getLabel().setText("Success");
+					this.getLabel().setText("Invalid");
+					this.getLabel().setOpaque(true);
+					this.getParent().repaint();
+				}else{
+					this.getLabel().setBackground(Color.white);
+					this.getLabel().setText("VALID");
 					this.getLabel().setOpaque(true);
 					this.getParent().repaint();
 				}
@@ -121,8 +145,9 @@ public class CoinInputBox extends Panel {
 		 
 		// txtInvalidCoin=new TextField("Invalid Coin");
 			lbalTotalInserted=new Label("Total Money Inserted");	
+		//	lbalTotalInserted.setBackground(Color.gray);
 			
-			totalCost = new ObserverLabel("00.00",receiver) {
+			totalCost = new ObserverLabel(lbalTotalInserted, "00.00",receiver) {
 				
 				@Override
 				public void update(boolean status, Coin o) {
@@ -134,7 +159,7 @@ public class CoinInputBox extends Panel {
 							presentValue = Double.parseDouble(this.getLabel().getText());
 						}
 						Double totalValue = presentValue + o.getValue()/ 100f;
-						//this.getLabel().setBackground(Color.red);
+						this.getLabel().setBackground(Color.green);
 						this.getLabel().setPreferredSize(new Dimension(100, 20));
 						System.out.println(Double.toString(totalValue));
 						this.getLabel().setText(df.format(totalValue));
@@ -142,6 +167,27 @@ public class CoinInputBox extends Panel {
 						this.getLabel().setOpaque(true);
 						this.getParent().repaint();
 
+					}
+				}
+			};
+			
+			refundLabel=new Label("Refund Amout");	
+			
+			refundCost = new ObserverLabel(refundLabel, "00.00", receiver) {
+				
+				@Override
+				public void update(boolean status, Coin o) {
+					if (o == null) {
+						System.out.println(btnInvalidCoin.getLabel());
+						this.getLabel().setBackground(Color.yellow);
+						this.getLabel().setText(btnInvalidCoin.getLabel());
+						this.getLabel().setOpaque(true);
+						this.getParent().repaint();
+					}else{
+						this.getLabel().setBackground(Color.white);
+						this.getLabel().setText("0");
+						this.getLabel().setOpaque(true);
+						this.getParent().repaint();
 					}
 				}
 			};
@@ -164,8 +210,9 @@ public class CoinInputBox extends Panel {
 		 inserted.add(lbalTotalInserted);
 		 txtInserted.setPreferredSize(new Dimension(100,20));
 		 inserted.add(txtInserted);*/
+		// totalCost.add(lbalTotalInserted);
 		 add(totalCost);
-		 
+		 add(refundCost);
 		
 	}
 	public Button getBtnFiveCent() {
