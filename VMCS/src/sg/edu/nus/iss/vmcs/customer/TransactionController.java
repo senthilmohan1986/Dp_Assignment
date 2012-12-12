@@ -25,9 +25,94 @@ public class TransactionController {
 	private CustomerPanel customerPanel;
 	private CoinReceiver coinReceiver;
 	
+	private DispenseController dispenseController;
+	
 	private ITerminateStrategy terminateStrategy;
 	
 
+	
+	public void initialize() throws VMCSException {
+		coinReceiver = new CoinReceiver(this);
+		dispenseController = new DispenseController(this);
+	}
+	
+	public TransactionController(MainController mainController)
+	{
+		mainCtrl = mainController;
+	}
+	
+	
+
+	public void startTransaction(Integer identifier)
+	{
+	//	the price of the selected item is obtained.
+	//	the refund/change tray display is reset.
+	// the can collection box is reset.
+	// the drink selection box is deactivated.
+	// the coin receiver will be instructed to start receiving the coins
+	}
+	
+	public void processMoneyReceived(Integer total)
+	{
+		
+	}
+	
+	public void completeTransaction()
+	{
+		
+	}
+	
+	public void terminateFault()
+	{
+		
+	}
+	
+	public void termianteTransaction()
+	{
+		
+	}
+	
+	public void cancelTransaction()
+	{
+		terminateStrategy.terminate(this);
+	}
+	
+	public void closeDown()
+	{
+		
+	}
+	public void displayCustomerPanel()
+	{
+		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		/*if (sm == null)
+			sm = new CustomerSimulatorPanel(coinReceiver);
+
+		sm.display();
+		//System.out.println("get door status:" + door.isDoorClosed());
+		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		*/
+		
+		PanelSetupController builder=new PanelSetupController();
+		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
+		builder.constractPanel();
+		customerPanel=(CustomerPanel)builder.getPanel();
+		builder.getPanel().setVisible(true);
+
+		
+	}
+	public CustomerPanel getCustomerPanel() {
+		return customerPanel;
+	}
+	public void setCustomerPanel(CustomerPanel customerPanel) {
+		this.customerPanel = customerPanel;
+	}
+	public void refreshCustomerPanel()
+	{
+	
+	}
+	
+	
+	
 	public void setTerminateStrategy(ITerminateStrategy terminateStrategy) {
 		this.terminateStrategy = terminateStrategy;
 	}
@@ -37,12 +122,11 @@ public class TransactionController {
 	public void setCoinReceiver(CoinReceiver coinReceiver) {
 		this.coinReceiver = coinReceiver;
 	}
-	/*public void initialize() throws VMCSException {
-		coinReceiver = new CoinReceiver(this);
-	}*/
-	public TransactionController(MainController mainController)
-	{
-		mainCtrl = mainController;
+	public DispenseController getDispenseController() {
+		return dispenseController;
+	}
+	public void setDispenseController(DispenseController dispenseController) {
+		this.dispenseController = dispenseController;
 	}
 	
 	public Boolean getChange_given() {
@@ -84,74 +168,10 @@ public class TransactionController {
 		this.selection = selection;
 	}
 
-
-	public void startTransaction(Integer identifier)
-	{
-	//	the price of the selected item is obtained.
-	//	the refund/change tray display is reset.
-	// the can collection box is reset.
-	// the drink selection box is deactivated.
-	// the coin receiver will be instructed to start receiving the coins
-	}
-	
-	public void processMoneyReceived(Integer total)
-	{
-		
-	}
-	
-	public void completeTransaction()
-	{
-		
-	}
-	
-	public void terminateFault()
-	{
-		
-	}
-	
-	public void termianteTransaction()
-	{
-		terminateStrategy.terminate(this);
-	}
-	
-	public void cancelTransaction()
-	{
-		
-	}
-	
-	public void closeDown()
-	{
-		
-	}
-	public void displayCustomerPanel()
-	{
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
-		/*if (sm == null)
-			sm = new CustomerSimulatorPanel(coinReceiver);
-
-		sm.display();
-		//System.out.println("get door status:" + door.isDoorClosed());
-		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
-		*/
-		
-		PanelSetupController builder=new PanelSetupController();
-		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
-		builder.constractPanel();
-		customerPanel=(CustomerPanel)builder.getPanel();
-		builder.getPanel().setVisible(true);
-
-		
-	}
-	public CustomerPanel getCustomerPanel() {
-		return customerPanel;
-	}
-	public void setCustomerPanel(CustomerPanel customerPanel) {
-		this.customerPanel = customerPanel;
-	}
-	public void refreshCustomerPanel()
-	{
-	
+	public MainController getMainCtrl() {
+		return mainCtrl;
 	}
 
+	
 }
 	
