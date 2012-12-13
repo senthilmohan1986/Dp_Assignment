@@ -8,7 +8,7 @@ public class DispenseFaultTerminator implements ITerminateStrategy {
 	public void terminate(TransactionController transactionCtrl) {
 		
 		transactionCtrl.getCoinReceiver().refundCash();
-		//transactionCtrl.getDispenseController().allowSelection(false);
+		transactionCtrl.getDispenseController().allowSelection(false);
 
 	}
 
