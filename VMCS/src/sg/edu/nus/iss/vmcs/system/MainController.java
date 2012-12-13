@@ -50,10 +50,23 @@ public class MainController {
 	public void initialize() throws VMCSException {
 		try {
 			Environment.initialize(propertyFile);
-			CashPropertyLoader cashLoader =
-				new CashPropertyLoader(Environment.getCashPropFile());
-			DrinkPropertyLoader drinksLoader =
-				new DrinkPropertyLoader(Environment.getDrinkPropFile());
+			
+			//Changes by Vipul
+			/**Commented as part of factory implementation**/
+//			CashPropertyLoader cashLoader = new CashPropertyLoader(Environment.getCashPropFile());
+//			DrinkPropertyLoader drinksLoader = new DrinkPropertyLoader(Environment.getDrinkPropFile());
+			
+			/**Abstract Factory Implementation Starts**/
+			System.out.println("AbstractInitFactory ai = FactoryMaker.getFactory(Environment.getFactoryType());"+Environment.getFactoryType());
+			AbstractInitFactory ai = FactoryMaker.getFactory(Environment.getFactoryType());
+			
+			System.out.println("AbstractCashLoader cashLoader = ai.createCashLoader();"+Environment.getCashPropFile());
+			AbstractCashLoader cashLoader = ai.createCashLoader(Environment.getCashPropFile());
+			
+			System.out.println("AbstractDrinksLoader drinksLoader = createDrinkLoader();"+Environment.getDrinkPropFile());
+			AbstractDrinksLoader drinksLoader = ai.createDrinkLoader(Environment.getDrinkPropFile());
+			/**Abstract Factory Implementation ENDS**/
+			
 			cashLoader.initialize();
 			drinksLoader.initialize();
 			storeCtrl = new StoreController(cashLoader, drinksLoader);

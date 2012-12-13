@@ -27,6 +27,8 @@ public class Environment {
 	public final static String DRINK_PROP_FILE = "drinkFile";
 	public final static String CASH_PROP_FILE = "cashFile";
 	public final static String PASSWORD = "password";
+	
+	public final static String FACTORY_NAME = "data";
 
 	private static Properties prop;
 
@@ -44,11 +46,13 @@ public class Environment {
 	}
 
 	public static String getDrinkPropFile() {
+		System.out.println(DRINK_PROP_FILE);
 		return prop.getProperty(DRINK_PROP_FILE);
 	}
 
 	public static String getCashPropFile() {
 		String fn;
+		System.out.println(DRINK_PROP_FILE);
 		fn = prop.getProperty(CASH_PROP_FILE);
 		return fn;
 	}
@@ -57,4 +61,11 @@ public class Environment {
 	public static String getPassword() {
 		return prop.getProperty(PASSWORD);
 	}
+
+	public static String getFactoryType() {
+		String fn;
+		fn = prop.getProperty(FACTORY_NAME);
+		return fn;
+	}
+	
 }
