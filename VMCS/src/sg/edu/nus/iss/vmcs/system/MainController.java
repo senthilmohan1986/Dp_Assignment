@@ -62,7 +62,7 @@ public class MainController {
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
 			maintenanceCtrl = new MaintenanceController(this);
-			transactionCtrl=new TransactionController(this);
+			transactionCtrl=new TransactionController(this, storeCtrl);
 		//	transactionCtrl.initialize();
 			
 		} catch (IOException e) {

@@ -1,11 +1,25 @@
 package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.Panel;
+import java.awt.Stroke;
 import java.awt.TextField;
 
 import java.awt.Button;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
+import sg.edu.nus.iss.vmcs.machinery.StoreViewerListener;
+import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
 
 public class DrinkSelectionBox extends Panel{
 
@@ -14,7 +28,7 @@ public class DrinkSelectionBox extends Panel{
 	 * 
 	 */
 	private static final long serialVersionUID = 5331267538227219978L;
-	private Button btnCoca=new Button("Coca-Cola");
+	/*private Button btnCoca=new Button("Coca-Cola");
 	private Button btnFanta=new Button("Fanta");
 	private Button btnSari=new Button("Sari");
 	private Button btnSoyaBean=new Button("Soya Bean");
@@ -30,18 +44,52 @@ public class DrinkSelectionBox extends Panel{
 	private TextField txtFantaStatus=new TextField("NOT IN STOCK");
 	private TextField txtSariStatus=new TextField("NOT IN STOCK");
 	private TextField txtSoyaBeanStatus=new TextField("NOT IN STOCK");
-	private TextField txtCocaColaStatus=new TextField("NOT IN STOCK");
+	private TextField txtCocaColaStatus=new TextField("NOT IN STOCK");*/
+	Panel panelDrinkSelect = new Panel();
+	private Label drinkSelectedLabel = new  Label("\nSelected Drink");
+	private Label drinkSelected = new  Label();
 	
-	public DrinkSelectionBox()
+	
+	public Label getDrinkSelected() {
+		return drinkSelected;
+	}
+
+	public void setDrinkSelected(Label drinkSelected) {
+		this.drinkSelected = drinkSelected;
+	}
+	
+	private StoreController storeCtrl;
+	
+	public DrinkSelectionBox(StoreController storeCtrl)
 	{
-		
-		GridLayout grid=new GridLayout(5,1); 
-		grid.setHgap(50);
+		this.storeCtrl = storeCtrl;
+		FlowLayout grid = new FlowLayout();	//	grid.setHgap(50);
+		Properties prop=new Properties();
+		try{
+		InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
+		prop.load(ip);
 		Panel p=new Panel(grid);
+		StoreItem[] storeItem = storeCtrl.getStoreItems(Store.DRINK);
+
+		for (int i = 0; i < storeCtrl.getStoreSize(Store.DRINK); i++) {
+			String price = "Price" + (i+1);
+			String drinkContent =  storeItem[i].getContent().getName() + "-(" + prop.get(price) + "C)";	
+			Button drink = new Button(drinkContent);
+			drink.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println(arg0.getActionCommand() + ((Button)(arg0.getSource())).getLabel());
+					drinkSelected.setText(arg0.getActionCommand());
+				}
+			});
+			p.add(drink);
+		}
+	//	drinkSelected.setText("Coke");
+		panelDrinkSelect.add(drinkSelectedLabel);
+		panelDrinkSelect.add(drinkSelected);
 		
-		
-		
-		p.add(btnCoca);
+		/*p.add(btnCoca);
 		p.add(setBlackTheme(txtCoca));
 		p.add(setDisableTheme(txtCocaStatus));
 		
@@ -58,12 +106,28 @@ public class DrinkSelectionBox extends Panel{
 		p.add(btnCocaCola);
 		p.add(setBlackTheme(txtCocaCola));		
 		p.add(setDisableTheme(txtCocaColaStatus));
-		
+		*/
 		add(p);
+		add(panelDrinkSelect);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	   
 	}
+	
+	//private void initializeDrinks() {
+		
+			/*String name = storeItem[i].getContent().getName();
+			viewItems[i] = new LabelledDisplay(name,
+						LabelledDisplay.DEFAULT,
+						LabelledDisplay.GRID);
+			viewItems[i].addListener(
+                        new StoreViewerListener(type, i, storeCtrl));
+			this.add(viewItems[i]);*/
+//		}
+//	}
 
-	public Button getBtnCoca() {
+	/*public Button getBtnCoca() {
 		return btnCoca;
 	}
 
@@ -181,7 +245,7 @@ public class DrinkSelectionBox extends Panel{
 
 	public void setTxtCocaColaStatus(TextField txtCocaColaStatus) {
 		this.txtCocaColaStatus = txtCocaColaStatus;
-	}
+	}*/
 	
 	
 	private TextField setBlackTheme(TextField b)

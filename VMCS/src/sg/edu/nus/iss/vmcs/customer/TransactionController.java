@@ -25,6 +25,8 @@ public class TransactionController {
 	
 	private ITerminateStrategy terminateStrategy;
 	
+	private StoreController storeController;
+	
 
 	
 	
@@ -37,9 +39,10 @@ public class TransactionController {
 		coinReceiver = new CoinReceiver(this);
 	}*/
 	
-	public TransactionController(MainController mainController)
+	public TransactionController(MainController mainController, StoreController storeController)
 	{
 		mainCtrl = mainController;
+		this.storeController = storeController;
 	}
 
 
@@ -95,7 +98,7 @@ public class TransactionController {
 		*/
 		
 		PanelSetupController builder=new PanelSetupController();
-		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
+		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this, storeController));
 		builder.constractPanel();
 		customerPanel=(CustomerPanel)builder.getPanel();
 		builder.getPanel().setVisible(true);

@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 
+import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
 
 public class CustomerPanel extends Dialog {
@@ -28,10 +29,11 @@ public class CustomerPanel extends Dialog {
 
 	private static final String VIMTO_SOFT_DRINK_DISPENSER = "VIMTO SOFT DRINK DISPENSER";
 	
+	private StoreController storeController;
 	
 	private TransactionController transCtrl;
 	private CoinInputBox coinInputBox;
-	private DrinkSelectionBox drinkSelectionBox=new DrinkSelectionBox();
+	private DrinkSelectionBox drinkSelectionBox;;
 	private Button btnTerminate=new Button("Terminate and Return Cash");
 	//private TextField txtNoChangeAvail=new TextField("No Change Available");
 	private WarningDisplay warnNoChange;
@@ -40,7 +42,7 @@ public class CustomerPanel extends Dialog {
 	private Label lblCollectCan=new Label("Collect Can Here: ");
 	private TextField txtCollectCan=new TextField("No Can ");
 	private FaultDetectionPanel faultDetection;
-	public CustomerPanel(Frame owner, TransactionController transCtrl) {
+	/*public CustomerPanel(Frame owner, TransactionController transCtrl) {
 		
 		super(owner);
 		// TODO Auto-generated constructor stub
@@ -48,7 +50,22 @@ public class CustomerPanel extends Dialog {
 		coinInputBox = new CoinInputBox(transCtrl);
 		warnNoChange=new WarningDisplay("No Change Available");
 		
+	}*/
+	
+	
+	public CustomerPanel(Frame owner, TransactionController transCtrl, StoreController storeController) {
+		
+		super(owner);
+		// TODO Auto-generated constructor stub
+		this.transCtrl= transCtrl;
+		warnNoChange=new WarningDisplay("No Change Available");
+		this.storeController = storeController;
+		drinkSelectionBox = new DrinkSelectionBox(storeController);
+		coinInputBox = new CoinInputBox(drinkSelectionBox,transCtrl);
+
+		
 	}
+	
 	
 	
 	public void initComponent()

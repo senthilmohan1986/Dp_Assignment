@@ -93,10 +93,13 @@ public class CoinInputBox extends Panel {
 	public void setTransCtrl(TransactionController transCtrl) {
 		this.transCtrl = transCtrl;
 	}
+	
+	private DrinkSelectionBox selectionBox;
 
-	public CoinInputBox(TransactionController transCtrl) {
+	public CoinInputBox(DrinkSelectionBox selectionBox, TransactionController transCtrl) {
 		super();
 		setBackground(Color.LIGHT_GRAY);
+		this.selectionBox = selectionBox;
 		this.transCtrl = transCtrl;
 		 this.receiver = new CoinReceiver(transCtrl, this);
 		 
@@ -124,7 +127,7 @@ public class CoinInputBox extends Panel {
 		 
 		
 		 
-		 invalidCoin = new ObserverLabel("Coin Validation", receiver) {
+		 invalidCoin = new ObserverLabel("Coin Validation", receiver, selectionBox) {
 			
 			@Override
 			public void update(boolean status, Coin o) {
@@ -147,7 +150,7 @@ public class CoinInputBox extends Panel {
 			lbalTotalInserted=new Label("Total Money Inserted");	
 		//	lbalTotalInserted.setBackground(Color.gray);
 			
-			totalCost = new ObserverLabel(lbalTotalInserted, "00.00",receiver) {
+			totalCost = new ObserverLabel(lbalTotalInserted, "00.00",receiver, selectionBox) {
 				
 				@Override
 				public void update(boolean status, Coin o) {
@@ -158,6 +161,13 @@ public class CoinInputBox extends Panel {
 						if (this.getLabel().getText() != null &&  !this.getLabel().getText().isEmpty()) {
 							presentValue = Double.parseDouble(this.getLabel().getText());
 						}
+						
+						Double totalValueInCents = presentValue + o.getValue();
+						String value = this.getBox().getDrinkSelected().getText();
+						String tokenized[] = value.split("-");
+						String priceTokenized = tokenized[1].split("C")[0].substring(1);
+					//	System.out.println("%%%%%%%%" +priceTokenized);
+						
 						Double totalValue = presentValue + o.getValue()/ 100f;
 						this.getLabel().setBackground(Color.green);
 						this.getLabel().setPreferredSize(new Dimension(100, 20));
@@ -166,6 +176,10 @@ public class CoinInputBox extends Panel {
 						
 						this.getLabel().setOpaque(true);
 						this.getParent().repaint();
+						
+						if (totalValueInCents >= Double.parseDouble(priceTokenized)) {
+							System.out.println("Success");
+						}
 
 					}
 				}
@@ -173,7 +187,7 @@ public class CoinInputBox extends Panel {
 			
 			refundLabel=new Label("Refund Amout");	
 			
-			refundCost = new ObserverLabel(refundLabel, "00.00", receiver) {
+			refundCost = new ObserverLabel(refundLabel, "00.00", receiver, selectionBox) {
 				
 				@Override
 				public void update(boolean status, Coin o) {
