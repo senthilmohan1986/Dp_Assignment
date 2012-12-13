@@ -8,7 +8,9 @@ package sg.edu.nus.iss.vmcs.store;
  *
  */
 
-import java.io.*;
+import java.io.IOException;
+
+import sg.edu.nus.iss.vmcs.customer.Dispense.DrinksDispenseCommand;
 
 /**
  *
@@ -187,9 +189,12 @@ public class StoreController {
 	}
 
 	public void dispenseDrink(int idx)  {
+		//THIS LOGIC IS MOVED TO COMMAND
 		DrinksStoreItem item;
 		item = (DrinksStoreItem) getStoreItem(Store.DRINK, idx);
-		item.decrement();
+		//item.decrement();
+		DrinksDispenseCommand oDrinksDispenseCommand = new DrinksDispenseCommand(item);
+		oDrinksDispenseCommand.execute();
 	}
 
 	public Store getStore(int type) {

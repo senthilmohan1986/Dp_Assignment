@@ -1,15 +1,15 @@
 #
-#Wed Dec 12 22:03:31 GMT+08:00 2012
+#Fri Dec 14 00:09:59 SGT 2012
 Name6=Soya Bean
-Name5=Coca-Cola
-Name4=Soya Bean
+Name5=Coca Cola
+Name4=Ice Lemon Tea
 Name3=Sarsi
 Name2=Fanta
-Name1=Coca-Cola
+Name1=Thumbs up
 NumOfItems=6
 Quantity6=1
 Quantity5=5
-Quantity4=2
+Quantity4=1
 Quantity3=0
 Quantity2=1
 Quantity1=0

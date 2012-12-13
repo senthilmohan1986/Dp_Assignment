@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import sg.edu.nus.iss.vmcs.machinery.StoreViewerListener;
@@ -60,6 +61,7 @@ public class DrinkSelectionBox extends Panel{
 	
 	private StoreController storeCtrl;
 	
+	
 	public DrinkSelectionBox(StoreController storeCtrl)
 	{
 		this.storeCtrl = storeCtrl;
@@ -73,8 +75,14 @@ public class DrinkSelectionBox extends Panel{
 
 		for (int i = 0; i < storeCtrl.getStoreSize(Store.DRINK); i++) {
 			String price = "Price" + (i+1);
+			String drinkName = "Name" + (i+1);
 			String drinkContent =  storeItem[i].getContent().getName() + "-(" + prop.get(price) + "C)";	
 			Button drink = new Button(drinkContent);
+				if (storeItem[i].getContent().getName().equals(prop.getProperty(drinkName))) {
+					drink.setName(drinkName);
+					System.out.println(drinkName);
+			}
+//			drink.setName(name)
 			drink.addActionListener(new ActionListener() {
 				
 				@Override

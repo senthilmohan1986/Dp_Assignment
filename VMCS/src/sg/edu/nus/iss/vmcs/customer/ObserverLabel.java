@@ -21,21 +21,25 @@ public abstract class ObserverLabel extends Observer {
 	
 	private DrinkSelectionBox box;
 	
-	public ObserverLabel(String name, Subject subject, DrinkSelectionBox box) {
+	private TransactionController transCtrl;
+	
+	public ObserverLabel(String name, Subject subject, DrinkSelectionBox box, TransactionController transCtrl) {
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		this.setBox(box);
 		this.sub = subject;
+		this.transCtrl = transCtrl;
 		sub.addObserver(this);
 		label = new JLabel(name);
 		label.setBackground(Color.white);
 		add(label);
 	}
 	
-	public ObserverLabel(Component component, String name, Subject subject, DrinkSelectionBox box) {
+	public ObserverLabel(Component component, String name, Subject subject, DrinkSelectionBox box, TransactionController transCtrl) {
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		this.setBox(box);
 		this.sub = subject;
+		this.transCtrl = transCtrl;
 		sub.addObserver(this);
 		component.setBackground(Color.lightGray);
 		add(component);

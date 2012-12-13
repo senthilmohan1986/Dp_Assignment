@@ -205,6 +205,15 @@ public class TransactionController {
 	public ChangeGiver getChainGiver() {
 		return chainGiver;
 	}
+	
+	public void DispenseDrink(int item){
+		DispenseController oDispenseController = new DispenseController(this);
+		try {
+			oDispenseController.dispenseDrink(item);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 }
 	

@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.Panel;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.util.Properties;
 
 import javax.swing.BoxLayout;
 
@@ -96,7 +99,7 @@ public class CoinInputBox extends Panel {
 	
 	private DrinkSelectionBox selectionBox;
 
-	public CoinInputBox(DrinkSelectionBox selectionBox, TransactionController transCtrl) {
+	public CoinInputBox(final DrinkSelectionBox selectionBox, final TransactionController transCtrl) {
 		super();
 		setBackground(Color.LIGHT_GRAY);
 		this.selectionBox = selectionBox;
@@ -128,7 +131,7 @@ public class CoinInputBox extends Panel {
 		 
 		
 		 
-		 invalidCoin = new ObserverLabel("Coin Validation", receiver, selectionBox) {
+		 invalidCoin = new ObserverLabel("Coin Validation", receiver, selectionBox, transCtrl) {
 			
 			@Override
 			public void update(boolean status, Coin o) {
@@ -151,10 +154,14 @@ public class CoinInputBox extends Panel {
 			lbalTotalInserted=new Label("Total Money Inserted");	
 		//	lbalTotalInserted.setBackground(Color.gray);
 			
-			totalCost = new ObserverLabel(lbalTotalInserted, "00.00",receiver, selectionBox) {
+			totalCost = new ObserverLabel(lbalTotalInserted, "00.00",receiver, selectionBox, transCtrl) {
 				
 				@Override
 				public void update(boolean status, Coin o) {
+					try{
+					InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
+					Properties prop = new Properties();
+					prop.load(ip);
 					System.out.println("success for total amt");
 					 DecimalFormat df = new DecimalFormat("##.##");
 					if (o != null) {
@@ -163,7 +170,7 @@ public class CoinInputBox extends Panel {
 							presentValue = Double.parseDouble(this.getLabel().getText());
 						}
 						
-						Double totalValueInCents = presentValue + o.getValue();
+						Double totalValueInCents = (presentValue * 100) + o.getValue();
 						String value = this.getBox().getDrinkSelected().getText();
 						String tokenized[] = value.split("-");
 						String priceTokenized = tokenized[1].split("C")[0].substring(1);
@@ -180,15 +187,32 @@ public class CoinInputBox extends Panel {
 						
 						if (totalValueInCents >= Double.parseDouble(priceTokenized)) {
 							System.out.println("Success");
+							String labelName = selectionBox.getDrinkSelected().getText();
+							String tokenizedOne[] = value.split("-");
+							for (int i = 0; i < 6; i++) {
+								String drinkName = "Name" + i;
+								if (tokenized[0].equals(prop.getProperty(drinkName))) {
+									String valueDrink = drinkName;
+									System.out.println(valueDrink);
+									transCtrl.DispenseDrink(i);
+									selectionBox.getDrinkSelected().setText("Success Dispensed");
+									this.getParent().repaint();
+									this.getLabel().setText(df.format((totalValue - Double.parseDouble(priceTokenized)/100f)));
+								}
+							}
+							
 						}
 
+					}
+					}catch(Exception exception){
+						System.out.println(exception.getMessage());
 					}
 				}
 			};
 			
 			refundLabel=new Label("Refund Amout");	
 			
-			refundCost = new ObserverLabel(refundLabel, "00.00", receiver, selectionBox) {
+			refundCost = new ObserverLabel(refundLabel, "00.00", receiver, selectionBox, transCtrl) {
 				
 				@Override
 				public void update(boolean status, Coin o) {

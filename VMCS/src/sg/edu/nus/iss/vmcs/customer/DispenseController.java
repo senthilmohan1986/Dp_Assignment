@@ -41,13 +41,14 @@ public class DispenseController {
 	}
 
 	public boolean dispenseDrink(int selectedBrand) throws Exception{
-		 transactionController.getMainCtrl().getMachineryController().dispenseDrink(selectedBrand);
-		StoreItem storeItem = transactionController.getMainCtrl().getStoreController().getStoreItem(Store.DRINK, selectedBrand);
-		transactionController.getCustomerPanel().setCollectCanValue(storeItem.getContent().getName());
+		 //transactionController.getMainCtrl().getMachineryController().dispenseDrink(selectedBrand);
+		//StoreItem storeItem = transactionController.getMainCtrl().getStoreController().getStoreItem(Store.DRINK, selectedBrand);
+		//transactionController.getCustomerPanel().setCollectCanValue(storeItem.getContent().getName());
 		//if (drinkDispensed)
-			updateDrinkSelection(selectedBrand);
+			//updateDrinkSelection(selectedBrand);
+		transactionController.getMainCtrl().getMachineryController().dispenseDrink(selectedBrand);
 		
-     return true;
+    return true;
 	}
 
 	public void updateDrinkSelection(int selection){
