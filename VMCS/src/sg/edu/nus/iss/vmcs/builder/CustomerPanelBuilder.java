@@ -33,22 +33,20 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 
 	
 
+
 	/*public CustomerPanelBuilder(Frame scp,
-			TransactionController customerPanelController) {
-=======
-	public CustomerPanelBuilder(Frame scp,
 			TransactionController transCtrl) {
->>>>>>> b48af334e0cb0ed8b10c181ba91c0a49d299b365
 		// TODO Auto-generated constructor stub
 		panel=new CustomerPanel(scp, transCtrl);
 		this.transCtrl = transCtrl;
 		p=new Properties();
 	}*/
-	
+
 	public CustomerPanelBuilder(Frame scp,
 			TransactionController customerPanelController, StoreController storeController) {
 		// TODO Auto-generated constructor stub
 		panel=new CustomerPanel(scp, customerPanelController, storeController);
+		this.transCtrl = customerPanelController;
 		p=new Properties();
 	}
 
