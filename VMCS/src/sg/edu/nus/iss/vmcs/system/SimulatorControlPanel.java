@@ -106,6 +106,7 @@ public class SimulatorControlPanel extends Frame {
         setButtonState (SIMUL_BEGIN,   !isOn);
         setButtonState (ACT_MAINTAINER, isOn);
         setButtonState (ACT_MACHINERY,  isOn);
+        setButtonState (ACT_CUSTOMER,  isOn);
         setButtonState (SIMUL_END,      isOn);
     }
 

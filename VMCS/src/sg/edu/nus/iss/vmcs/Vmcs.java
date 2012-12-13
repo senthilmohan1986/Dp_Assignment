@@ -32,7 +32,7 @@ public class Vmcs {
 			mc.start();
 		} catch (VMCSException e) {
 			System.out.println(
-				"Vmcs.start: Error in system initialization: "
+				"Vmcs.start: Error in system initial: "
 					+ e.getMessage());
 			System.exit(0);
 		}

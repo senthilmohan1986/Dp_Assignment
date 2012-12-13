@@ -14,6 +14,9 @@ import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.builder.MaintainerPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
+import sg.edu.nus.iss.vmcs.customer.TransactionController;
+import sg.edu.nus.iss.vmcs.customer.terminate.CustomerTransactionTerminator;
+import sg.edu.nus.iss.vmcs.customer.terminate.MaintainerLoginTerminator;
 import sg.edu.nus.iss.vmcs.machinery.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -71,6 +74,12 @@ public class MaintenanceController {
 			mpanel.setActive(MaintenancePanel.PSWD, false);
 			MachineryController machctrl = mCtrl.getMachineryController();
 			machctrl.setDoorState(false);
+			
+			//Terminate Transaction
+			TransactionController transCtrl = mCtrl.getTransactionCtrl();
+			transCtrl.setTerminateStrategy(new MaintainerLoginTerminator());
+			transCtrl.terminate();
+			
 		}
 	}
 

@@ -10,6 +10,7 @@ public class CustomerTransactionTerminator implements ITerminateStrategy {
 		System.out.println("CustomerTransactionTerminator");
 		transactionCtrl.getCoinReceiver().stopReceive();
 		transactionCtrl.getCoinReceiver().refundCash();
+		transactionCtrl.getDispenseController().allowSelection(true);
 		
 	}
 

@@ -19,8 +19,11 @@ public abstract class ObserverLabel extends Observer {
 	
 	private JLabel label;
 	
-	public ObserverLabel(String name, Subject subject) {
+	private DrinkSelectionBox box;
+	
+	public ObserverLabel(String name, Subject subject, DrinkSelectionBox box) {
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		this.setBox(box);
 		this.sub = subject;
 		sub.addObserver(this);
 		label = new JLabel(name);
@@ -28,9 +31,10 @@ public abstract class ObserverLabel extends Observer {
 		add(label);
 	}
 	
-	public ObserverLabel(Component component, String name, Subject subject) {
+	public ObserverLabel(Component component, String name, Subject subject, DrinkSelectionBox box) {
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		this.setBox(box);
 		this.sub = subject;
 		sub.addObserver(this);
 		component.setBackground(Color.lightGray);
@@ -47,4 +51,12 @@ public abstract class ObserverLabel extends Observer {
 
 	@Override
 	public abstract void update(boolean status, Coin o);
+
+	public DrinkSelectionBox getBox() {
+		return box;
+	}
+
+	public void setBox(DrinkSelectionBox box) {
+		this.box = box;
+	}
 }

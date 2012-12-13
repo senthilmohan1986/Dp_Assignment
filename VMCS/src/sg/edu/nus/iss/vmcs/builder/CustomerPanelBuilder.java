@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.customer.TerminateButtonListener;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.system.CustomerPanelTerminateButtonListener;
 
 
 public class CustomerPanelBuilder  extends PanelBuilder {
@@ -24,16 +26,29 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 
 	Properties p=new Properties();
 	CustomerPanel panel;
+	TransactionController transCtrl;
 	public CustomerPanelBuilder(){
 		// TODO Auto-generated constructor stub
 	}
 
 	
 
-	public CustomerPanelBuilder(Frame scp,
+	/*public CustomerPanelBuilder(Frame scp,
 			TransactionController customerPanelController) {
+=======
+	public CustomerPanelBuilder(Frame scp,
+			TransactionController transCtrl) {
+>>>>>>> b48af334e0cb0ed8b10c181ba91c0a49d299b365
 		// TODO Auto-generated constructor stub
-		panel=new CustomerPanel(scp, customerPanelController);
+		panel=new CustomerPanel(scp, transCtrl);
+		this.transCtrl = transCtrl;
+		p=new Properties();
+	}*/
+	
+	public CustomerPanelBuilder(Frame scp,
+			TransactionController customerPanelController, StoreController storeController) {
+		// TODO Auto-generated constructor stub
+		panel=new CustomerPanel(scp, customerPanelController, storeController);
 		p=new Properties();
 	}
 
@@ -56,7 +71,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	@Override
 	public void buildControls() {
 		// TODO Auto-generated method stub
-		panel.getBtnTerminate().addActionListener(new TerminateButtonListener(panel)); 
+		panel.getBtnTerminate().addActionListener(new CustomerPanelTerminateButtonListener(transCtrl)); 
 	}
 
 	@Override
@@ -67,7 +82,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 		try {
 			InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
 			p.load(ip);
-			panel.getDrinkSelectionBox().getTxtCoca().setText((String)p.get("Price1"));
+			/*panel.getDrinkSelectionBox().getTxtCoca().setText((String)p.get("Price1"));
 			panel.getDrinkSelectionBox().getTxtFanta().setText((String)p.get("Price2"));
 			panel.getDrinkSelectionBox().getTxtSari().setText((String)p.get("Price3"));
 			panel.getDrinkSelectionBox().getTxtSoyaBean().setText((String)p.get("Price4"));
@@ -89,7 +104,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 			}
 			if (Integer.parseInt((String)p.get("Quantity5"))<1){
 				panel.getDrinkSelectionBox().getTxtCocaColaStatus().setForeground(Color.white);panel.getDrinkSelectionBox().getBtnCocaCola().setEnabled(false);
-			}
+			}*/
 			
 			
 			

@@ -3,12 +3,10 @@ package sg.edu.nus.iss.vmcs.customer;
 import java.awt.Frame;
 
 import sg.edu.nus.iss.vmcs.builder.CustomerPanelBuilder;
-import sg.edu.nus.iss.vmcs.builder.MachineryPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
 import sg.edu.nus.iss.vmcs.customer.terminate.ITerminateStrategy;
-import sg.edu.nus.iss.vmcs.machinery.Door;
-import sg.edu.nus.iss.vmcs.machinery.MachinerySimulatorPanel;
-import sg.edu.nus.iss.vmcs.system.CustomerSimulatorPanel;
+import sg.edu.nus.iss.vmcs.store.Coin;
+import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
@@ -21,13 +19,126 @@ public class TransactionController {
 	private Integer selection;
 	
 	public MainController mainCtrl;
-	private CustomerSimulatorPanel sm;
 	private CustomerPanel customerPanel;
 	private CoinReceiver coinReceiver;
+	private ChangeGiver chainGiver;
+	
+
+	private DispenseController dispenseController;
 	
 	private ITerminateStrategy terminateStrategy;
 	
+	private StoreController storeController;
+	
 
+	
+	
+	public void initialize() throws VMCSException {
+		
+		dispenseController = new DispenseController(this);
+		chainGiver = new ChangeGiver(this);
+	}
+
+	/*public void initialize() throws VMCSException {
+		coinReceiver = new CoinReceiver(this);
+	}*/
+	
+	public TransactionController(MainController mainController, StoreController storeController)
+	{
+		mainCtrl = mainController;
+		this.storeController = storeController;
+	}
+
+
+	public void startTransaction(Integer identifier)
+	{
+	//	the price of the selected item is obtained.
+	//	the refund/change tray display is reset.
+	// the can collection box is reset.
+	// the drink selection box is deactivated.
+	// the coin receiver will be instructed to start receiving the coins
+	}
+	
+	public void processMoneyReceived(Integer total)
+	{
+		
+	}
+	
+	public void completeTransaction()
+	{
+		
+	}
+	
+	public void terminateFault()
+	{
+		
+	}
+	
+	public void termianteTransaction()
+	{
+		terminateStrategy.terminate(this);
+
+	}
+	
+	public void cancelTransaction()
+	{
+		terminateStrategy.terminate(this);
+
+	}
+	
+	public void terminate()
+	{
+		terminateStrategy.terminate(this);
+	}
+	
+	public void closeDown()
+	{
+		
+	}
+	public void displayCustomerPanel()
+	{
+		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		/*if (sm == null)
+			sm = new CustomerSimulatorPanel(coinReceiver);
+
+		sm.display();
+		//System.out.println("get door status:" + door.isDoorClosed());
+		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		*/
+		
+		PanelSetupController builder=new PanelSetupController();
+		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this, storeController));
+		builder.constractPanel();
+		customerPanel=(CustomerPanel)builder.getPanel();
+		builder.getPanel().setVisible(true);
+
+		
+	}
+	public CustomerPanel getCustomerPanel() {
+		return customerPanel;
+	}
+	public void setCustomerPanel(CustomerPanel customerPanel) {
+		this.customerPanel = customerPanel;
+	}
+	public void refreshCustomerPanel()
+	{
+	
+	}
+	public void storeCash()
+	{
+		if(coinReceiver.getCoins()!=null)
+		{
+			if(coinReceiver.getCoins().size() > 0)
+			{
+				for(Coin coin:coinReceiver.getCoins())
+				{
+					coinReceiver.storeCash(coin);
+				}
+			}
+		}
+	}
+	
+	
 	public void setTerminateStrategy(ITerminateStrategy terminateStrategy) {
 		this.terminateStrategy = terminateStrategy;
 	}
@@ -37,12 +148,11 @@ public class TransactionController {
 	public void setCoinReceiver(CoinReceiver coinReceiver) {
 		this.coinReceiver = coinReceiver;
 	}
-	/*public void initialize() throws VMCSException {
-		coinReceiver = new CoinReceiver(this);
-	}*/
-	public TransactionController(MainController mainController)
-	{
-		mainCtrl = mainController;
+	public DispenseController getDispenseController() {
+		return dispenseController;
+	}
+	public void setDispenseController(DispenseController dispenseController) {
+		this.dispenseController = dispenseController;
 	}
 	
 	public Boolean getChange_given() {
@@ -84,73 +194,16 @@ public class TransactionController {
 		this.selection = selection;
 	}
 
+	public MainController getMainCtrl() {
+		return mainCtrl;
+	}
 
-	public void startTransaction(Integer identifier)
-	{
-	//	the price of the selected item is obtained.
-	//	the refund/change tray display is reset.
-	// the can collection box is reset.
-	// the drink selection box is deactivated.
-	// the coin receiver will be instructed to start receiving the coins
-	}
-	
-	public void processMoneyReceived(Integer total)
-	{
+	public void createChangeGiver(){
+		ChangeGiver cg = new ChangeGiver();
 		
 	}
-	
-	public void completeTransaction()
-	{
-		
-	}
-	
-	public void terminateFault()
-	{
-		
-	}
-	
-	public void termianteTransaction()
-	{
-		terminateStrategy.terminate(this);
-	}
-	
-	public void cancelTransaction()
-	{
-		
-	}
-	
-	public void closeDown()
-	{
-		
-	}
-	public void displayCustomerPanel()
-	{
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
-		/*if (sm == null)
-			sm = new CustomerSimulatorPanel(coinReceiver);
-
-		sm.display();
-		//System.out.println("get door status:" + door.isDoorClosed());
-		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
-		*/
-		
-		PanelSetupController builder=new PanelSetupController();
-		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this));
-		builder.constractPanel();
-		customerPanel=(CustomerPanel)builder.getPanel();
-		builder.getPanel().setVisible(true);
-
-		
-	}
-	public CustomerPanel getCustomerPanel() {
-		return customerPanel;
-	}
-	public void setCustomerPanel(CustomerPanel customerPanel) {
-		this.customerPanel = customerPanel;
-	}
-	public void refreshCustomerPanel()
-	{
-	
+	public ChangeGiver getChainGiver() {
+		return chainGiver;
 	}
 
 }

@@ -56,17 +56,18 @@ public class MachineryController {
 
 	public void displayMachineryPanel() {
 		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
-		if (ml == null)
-			ml = new MachinerySimulatorPanel(scp, this);
-		ml.display();
-		//System.out.println("get door status:" + door.isDoorClosed());
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
-		
+//		if (ml == null)
+//			ml = new MachinerySimulatorPanel(scp, this);
+//		ml.display();
+//		//System.out.println("get door status:" + door.isDoorClosed());
+//		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
+//		
 		
 		PanelSetupController builder=new PanelSetupController();
 		builder.setPanelBuilder(new MachineryPanelBuilder((Frame) scp,this));
 		builder.constractPanel();
-		builder.getPanel().setVisible(true);
+		ml=(MachinerySimulatorPanel) builder.getPanel();
+		ml.setVisible(true);
 	}
 
 	public void closeMachineryPanel() {

@@ -22,12 +22,10 @@ import sg.edu.nus.iss.vmcs.customer.CoinReceiver;
 public class ActivateCustomerPanelButtonListener implements ActionListener {
 
 	private SimulationController simCtrl;
-	private CustomerSimulatorPanel custPanel;
 	private CoinReceiver receiver;
 	
 	public ActivateCustomerPanelButtonListener(CoinReceiver ct) {
 		receiver = ct;
-		custPanel = new CustomerSimulatorPanel(receiver);
 	}
 	
 	public ActivateCustomerPanelButtonListener(SimulationController ct) {
