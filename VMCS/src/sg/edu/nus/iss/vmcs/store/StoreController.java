@@ -206,9 +206,4 @@ public class StoreController {
 			item.decrement();
 	}
 	
-	private static StoreController storeController;
-
-	public static StoreController getInstanceStoreController() {
-		return storeController;
-	}
 }
