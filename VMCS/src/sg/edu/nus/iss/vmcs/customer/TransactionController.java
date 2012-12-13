@@ -5,6 +5,7 @@ import java.awt.Frame;
 import sg.edu.nus.iss.vmcs.builder.CustomerPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
 import sg.edu.nus.iss.vmcs.customer.terminate.ITerminateStrategy;
+import sg.edu.nus.iss.vmcs.store.Coin;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
@@ -20,7 +21,7 @@ public class TransactionController {
 	public MainController mainCtrl;
 	private CustomerPanel customerPanel;
 	private CoinReceiver coinReceiver;
-	
+	private ChangeGiver chainGiver;
 	private DispenseController dispenseController;
 	
 	private ITerminateStrategy terminateStrategy;
@@ -31,6 +32,7 @@ public class TransactionController {
 	public void initialize() throws VMCSException {
 		coinReceiver = new CoinReceiver(this);
 		dispenseController = new DispenseController(this);
+		chainGiver = new ChangeGiver(this);
 	}
 
 	/*public void initialize() throws VMCSException {
@@ -75,8 +77,13 @@ public class TransactionController {
 	
 	public void cancelTransaction()
 	{
-		
+		terminateStrategy.terminate(this);
 
+	}
+	
+	public void terminate()
+	{
+		terminateStrategy.terminate(this);
 	}
 	
 	public void closeDown()
@@ -112,7 +119,19 @@ public class TransactionController {
 	{
 	
 	}
-	
+	public void storeCash()
+	{
+		if(coinReceiver.getCoins()!=null)
+		{
+			if(coinReceiver.getCoins().size() > 0)
+			{
+				for(Coin coin:coinReceiver.getCoins())
+				{
+					coinReceiver.storeCash(coin);
+				}
+			}
+		}
+	}
 	
 	
 	public void setTerminateStrategy(ITerminateStrategy terminateStrategy) {

@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import sg.edu.nus.iss.vmcs.customer.terminate.ChangeFaultTerminator;
 import sg.edu.nus.iss.vmcs.store.CashStore;
 import sg.edu.nus.iss.vmcs.store.Coin;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
@@ -26,11 +27,18 @@ public class ChangeGiver {
 	public ChangeGiver(TransactionController transactionController) {
 		super();
 		this.transactionController = transactionController;
-		storecontroller = StoreController.getInstanceStoreController();
+		storecontroller = transactionController.getMainCtrl().getStoreController();
 		StoreItem storeItem = storecontroller.getStoreItem(1, 10);
 		CashStore cashStore = new CashStore();
 		int cashStoreSize = cashStore.getStoreSize();
 		
+		
+	}
+	
+	public void falutIsDetected()
+	{
+		transactionController.setTerminateStrategy(new ChangeFaultTerminator());
+		transactionController.terminate();
 		
 	}
 	
