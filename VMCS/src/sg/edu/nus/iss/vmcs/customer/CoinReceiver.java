@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import sg.edu.nus.iss.vmcs.customer.terminate.ChangeFaultTerminator;
+import sg.edu.nus.iss.vmcs.customer.terminate.StoringCoinFaultTerminator;
+import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStore;
 import sg.edu.nus.iss.vmcs.store.Coin;
+import sg.edu.nus.iss.vmcs.system.MainController;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 
 public class CoinReceiver implements Subject{
@@ -39,15 +44,20 @@ public class CoinReceiver implements Subject{
 	
 	public void stopReceive() {
 		CustomerPanel customerPanel=transactionController.getCustomerPanel();
-		//customerPanel.getCoinInputBox().setActive(false);
+		customerPanel.getCoinInputBox().setActive(false);
 	}
 	
 	public void refundCash()
 	{
 		CustomerPanel customerPanel=transactionController.getCustomerPanel();
-		customerPanel.getTxtCollectCoin().setText(customerPanel.getCoinInputBox().getTotalAmount() + " C");
+		System.out.println("customerPanel.getCoinInputBox().getTotalAmount()" +customerPanel.getCoinInputBox().getTotalAmount());
+		//customerPanel.getTxtCollectCoin().setText(customerPanel.getCoinInputBox().getTotalAmount() + " C");
 		customerPanel.getCoinInputBox().setTotalAmount(0);
-		customerPanel.getCoinInputBox().getTotalCost().getLabel().setText("0 "+ "C");
+		//customerPanel.getCoinInputBox().getTotalCost().getLabel().setText("0 "+ "C");
+
+		String amount=customerPanel.getCoinInputBox().getTotalCost().getLabel().getText();
+		customerPanel.getTxtCollectCoin().setText(amount);
+		customerPanel.getCoinInputBox().getTotalCost().getLabel().setText("0.00");
 		customerPanel.getCoinInputBox().getInvalidCoin().getLabel().setBackground(Color.white);
 		System.out.println("refund cash");
 		
@@ -70,6 +80,25 @@ public class CoinReceiver implements Subject{
 			observers.get(i).update(status, coin);
 		}
 	}
+	
+	public void storeCash(Coin coin)
+	{
+		MainController mainCtrl = transactionController.getMainCtrl();
+		MachineryController machineryCtrl = mainCtrl.getMachineryController();
+		try {
+			machineryCtrl.storeCoin(coin);
+		} catch (VMCSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void falutIsDetected()
+	{
+		transactionController.setTerminateStrategy(new StoringCoinFaultTerminator());
+		transactionController.terminate();
+		
+	}
 
 	@Override
 	public void addObserver(Observer o) {
@@ -81,6 +110,10 @@ public class CoinReceiver implements Subject{
 	public void removeObserver(Observer o) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public List<Coin> getCoins() {
+		return coins;
 	}
 
 }

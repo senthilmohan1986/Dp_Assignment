@@ -264,4 +264,8 @@ public class DrinkSelectionBox extends Panel{
 		
 	}
 	
+	public void setActive(boolean isActive)
+	{
+		this.setEnabled(isActive);
+	}
 }

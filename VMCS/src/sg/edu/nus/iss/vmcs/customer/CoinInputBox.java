@@ -102,6 +102,7 @@ public class CoinInputBox extends Panel {
 		this.selectionBox = selectionBox;
 		this.transCtrl = transCtrl;
 		 this.receiver = new CoinReceiver(transCtrl, this);
+		 this.transCtrl.setCoinReceiver(receiver);
 		 
 		CoinInputListener fiveCentListener=new CoinInputListener(receiver, this,CoinType.FIVE);
 		CoinInputListener tenCentListener=new CoinInputListener(receiver, this,CoinType.TEN);
@@ -166,7 +167,7 @@ public class CoinInputBox extends Panel {
 						String value = this.getBox().getDrinkSelected().getText();
 						String tokenized[] = value.split("-");
 						String priceTokenized = tokenized[1].split("C")[0].substring(1);
-					//	System.out.println("%%%%%%%%" +priceTokenized);
+						System.out.println("%%%%%%%%" +priceTokenized);
 						
 						Double totalValue = presentValue + o.getValue()/ 100f;
 						this.getLabel().setBackground(Color.green);

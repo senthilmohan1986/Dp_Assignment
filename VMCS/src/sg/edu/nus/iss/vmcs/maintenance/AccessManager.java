@@ -32,7 +32,7 @@ public class AccessManager {
 		boolean psr;
 
 		psr = pswd.validatePassword(ps);
-		loginState = psr;
+		loginState = psr;		
 		mctrl.loginMaintainer(psr);
 	}
 

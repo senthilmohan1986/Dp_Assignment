@@ -70,41 +70,29 @@ public class CustomerPanel extends Dialog {
 	
 	public void initComponent()
 	{
-		FlowLayout fl=new FlowLayout();
+			
+		setLayout(new BorderLayout()); 
 		
-		this.setLayout(fl);
-		Panel p=new Panel();
+		Panel north=new Panel(new BorderLayout());
+		Panel center= new Panel(new BorderLayout());
+		Panel south = new Panel();
+	
 		
 		Font f=new Font("ARIAL", 0, 18);
 		Label header=new Label(VIMTO_SOFT_DRINK_DISPENSER);
 		header.setFont(f);
-	
-		Panel pt=new Panel(new FlowLayout());
-		pt.add(header);
-	
+		
+		north.add(header,BorderLayout.NORTH);
+		north.add(coinInputBox,BorderLayout.CENTER);
+		center.add(drinkSelectionBox,BorderLayout.PAGE_START);
 		
 		
-		//add(pt,BorderLayout.NORTH);
-		
-		
-		
-		
-		p.setLayout(new GridLayout(0,1));
-		p.add(coinInputBox);
-		p.add(drinkSelectionBox);
-		
-		
-		Panel nochange=new Panel();
-		nochange.setPreferredSize(new Dimension(100,100));
-		BoxLayout box=new BoxLayout(nochange,BoxLayout.PAGE_AXIS);
-		BorderLayout border=new BorderLayout();
-		
-		nochange.setLayout(border);
+		Panel nochange=new Panel(new BorderLayout());
 		warnNoChange.setPreferredSize(new Dimension(10,50));
 		
 		nochange.add(warnNoChange,BorderLayout.NORTH);
-		nochange.add(btnTerminate,BorderLayout.SOUTH);
-		p.add(nochange);
+		nochange.add(btnTerminate,BorderLayout.CENTER);
+		center.add(nochange,BorderLayout.CENTER);
 		btnTerminate.addActionListener(new CustomerPanelTerminateButtonListener(transCtrl));
 		
 		
@@ -112,21 +100,26 @@ public class CustomerPanel extends Dialog {
 		coin.add(lblCollectCoins);
 		txtCollectCoin.setPreferredSize(new Dimension(10,30));
 	    coin.add(txtCollectCoin);
-	    p.add(coin);
+	    center.add(coin,BorderLayout.SOUTH);
 	    Panel bottom=new Panel();
 	    
-	    bottom.setLayout(new BorderLayout());
-	     setFaultDetection(new FaultDetectionPanel());
-	     bottom.add(faultDetection,BorderLayout.SOUTH);
+	    bottom.setLayout(new GridLayout(0,1));
+	     setFaultDetection(new FaultDetectionPanel(transCtrl));
+	     bottom.add(faultDetection,BorderLayout.NORTH);
 	    Panel can=new Panel();
 	   
 		can.add(lblCollectCan);
-		txtCollectCan.setPreferredSize(new Dimension(10,30));
+		txtCollectCan.setPreferredSize(new Dimension(10,50));
 		can.add(txtCollectCan,BorderLayout.CENTER);
 		bottom.add(can);
-		p.add(bottom);
+		south.add(bottom);
 		
-		this.add(p);
+		add(north, BorderLayout.PAGE_START);
+		add(center, BorderLayout.CENTER);
+	    add(south, BorderLayout.PAGE_END);
+	    
+	    //setMaximumSize(new Dimension(100,100));
+	    //setSize(100, 100);
 		pack();
 		
 		final Dialog d=this;
@@ -234,6 +227,12 @@ public class CustomerPanel extends Dialog {
 
 	public void setTransactionController(TransactionController transCtrl) {
 		this.transCtrl = transCtrl;
+	}
+
+
+	public void setCollectCanValue(String name) {
+		// TODO Auto-generated method stub
+		txtCollectCoin.setText(name);
 	}
 	
 	

@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import sg.edu.nus.iss.vmcs.customer.terminate.DispenseFaultTerminator;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.DrinksStore;
 import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
@@ -31,7 +32,7 @@ public class DispenseController {
 				}
 			}
 		} else {
-			//transactionController.getCustomerPanel().setDrinkSelectionBoxActive(allow);
+			transactionController.getCustomerPanel().getDrinkSelectionBox().setActive(allow);
 		}
 	}
 
@@ -42,7 +43,7 @@ public class DispenseController {
 	public boolean dispenseDrink(int selectedBrand) throws Exception{
 		 transactionController.getMainCtrl().getMachineryController().dispenseDrink(selectedBrand);
 		StoreItem storeItem = transactionController.getMainCtrl().getStoreController().getStoreItem(Store.DRINK, selectedBrand);
-		//transactionController.getCustomerPanel().setCollectCanValue(storeItem.getContent().getName());
+		transactionController.getCustomerPanel().setCollectCanValue(storeItem.getContent().getName());
 		//if (drinkDispensed)
 			updateDrinkSelection(selectedBrand);
 		
@@ -67,5 +68,11 @@ public class DispenseController {
 	public void updateDrinkPanel(){
 		// TODO
 	}	
+	
+	public void faultIsDetected()
+	{
+		transactionController.setTerminateStrategy(new DispenseFaultTerminator());
+		transactionController.terminate();
+	}
 }
 
