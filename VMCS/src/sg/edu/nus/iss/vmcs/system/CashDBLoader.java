@@ -1,12 +1,6 @@
+//@author Vipul
 package sg.edu.nus.iss.vmcs.system;
 
-/*
- * Copyright 2003 ISS.
- * The contents contained in this document may not be reproduced in any
- * form or by any means, without the written permission of ISS, other
- * than for the purpose for which it has been supplied.
- *
- */
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,14 +9,7 @@ import java.util.Properties;
 
 import sg.edu.nus.iss.vmcs.store.*;
 
-/**
- *
- *
- * @version 3.0 5/07/2003
- * @author Olivo Miotto, Pang Ping Li
- */
-
-public class CashPropertyLoader extends AbstractCashLoader {
+public class CashDBLoader extends AbstractCashLoader {
 
 	private static final String NAME_LABEL     = "Name";
 	private static final String WEIGHT_LABEL   = "Weight";
@@ -31,11 +18,11 @@ public class CashPropertyLoader extends AbstractCashLoader {
 	private static final String PROP_NUM_ITEMS = "NumOfItems";
 
 	private Properties prop;
-	private String fileName;
+	private String tableName;
 
-	public CashPropertyLoader(String filen) {
-		System.out.println("CashPropertyLoader "+filen);
-		this.fileName = filen;
+	public CashDBLoader(String tablename) {
+		System.out.println("CashDBLoader "+tablename);
+		this.tableName = tablename;
 	}
 
 	public StoreItem getItem (int index) {
@@ -84,13 +71,13 @@ public class CashPropertyLoader extends AbstractCashLoader {
 
 	public void initialize() throws IOException {
 		prop = new Properties(System.getProperties());
-		FileInputStream stream = new FileInputStream(fileName);
+		FileInputStream stream = new FileInputStream(tableName);
 		prop.load(stream);
 		stream.close();
 	}
 
 	public void saveProperty() throws IOException {
-		FileOutputStream stream = new FileOutputStream(fileName);
+		FileOutputStream stream = new FileOutputStream(tableName);
 		prop.store(stream, "");
 		stream.close();
 	}

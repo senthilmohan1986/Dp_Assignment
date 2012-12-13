@@ -8,6 +8,11 @@ package sg.edu.nus.iss.vmcs.system;
  *
  */
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 import sg.edu.nus.iss.vmcs.store.*;
 
 /**
@@ -17,14 +22,19 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class DrinkPropertyLoader extends FilePropertyLoader {
+public class DrinkPropertyLoader extends AbstractDrinksLoader {
 
 	private static final String NAME_LABEL     = "Name";
 	private static final String PRICE_LABEL    = "Price";
 	private static final String QUANTITY_LABEL = "Quantity";
+	
+	private static final String PROP_NUM_ITEMS = "NumOfItems";
+
+	private Properties prop;
+	private String fileName;
 
 	public DrinkPropertyLoader(String filen) {
-		super(filen);
+		this.fileName=filen;
 	}
 
 	public StoreItem getItem(int index) {
@@ -64,4 +74,41 @@ public class DrinkPropertyLoader extends FilePropertyLoader {
 
 	}
 
+
+
+
+
+	public void initialize() throws IOException {
+		prop = new Properties(System.getProperties());
+		FileInputStream stream = new FileInputStream(fileName);
+		prop.load(stream);
+		stream.close();
+	}
+
+	public void saveProperty() throws IOException {
+		FileOutputStream stream = new FileOutputStream(fileName);
+		prop.store(stream, "");
+		stream.close();
+	}
+
+	public int getNumOfItems() {
+		String nm = prop.getProperty(PROP_NUM_ITEMS);
+		int nmi;
+		nmi = Integer.parseInt(nm);
+		return nmi;
+	}
+
+	public void setNumOfItems(int vl) {
+		prop.setProperty(PROP_NUM_ITEMS, String.valueOf(vl));
+	}
+
+
+	public String getValue(String key) {
+		return prop.getProperty(key);
+	}
+
+	public void setValue(String key, String value) {
+		prop.setProperty(key, value);
+	}
+	
 }
