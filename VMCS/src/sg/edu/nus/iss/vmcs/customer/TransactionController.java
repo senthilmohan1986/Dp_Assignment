@@ -32,7 +32,7 @@ public class TransactionController {
 	
 	
 	public void initialize() throws VMCSException {
-		coinReceiver = new CoinReceiver(this);
+		
 		dispenseController = new DispenseController(this);
 		chainGiver = new ChangeGiver(this);
 	}

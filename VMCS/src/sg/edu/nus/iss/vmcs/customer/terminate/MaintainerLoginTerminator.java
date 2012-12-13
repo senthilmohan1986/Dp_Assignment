@@ -11,7 +11,7 @@ public class MaintainerLoginTerminator implements ITerminateStrategy {
 		
 		if((transactionCtrl.getCoinReceiver().getCoins() != null))
 		{
-			
+			System.out.println("transactionCtrl.getCoinReceiver().getCoins().size() "+transactionCtrl.getCoinReceiver().getCoins().size() );
 			if(transactionCtrl.getCoinReceiver().getCoins().size() > 0)
 			{ 	//transaction in progress
 				System.out.println("Transaction is in Progress");

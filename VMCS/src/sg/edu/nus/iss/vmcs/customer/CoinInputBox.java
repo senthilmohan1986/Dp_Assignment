@@ -99,6 +99,7 @@ public class CoinInputBox extends Panel {
 		setBackground(Color.LIGHT_GRAY);
 		this.transCtrl = transCtrl;
 		 this.receiver = new CoinReceiver(transCtrl, this);
+		 this.transCtrl.setCoinReceiver(receiver);
 		 
 		CoinInputListener fiveCentListener=new CoinInputListener(receiver, this,CoinType.FIVE);
 		CoinInputListener tenCentListener=new CoinInputListener(receiver, this,CoinType.TEN);
