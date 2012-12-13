@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.customer.TerminateButtonListener;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
+import sg.edu.nus.iss.vmcs.system.CustomerPanelTerminateButtonListener;
 
 
 public class CustomerPanelBuilder  extends PanelBuilder {
@@ -24,6 +25,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 
 	Properties p=new Properties();
 	CustomerPanel panel;
+	TransactionController transCtrl;
 	public CustomerPanelBuilder(){
 		// TODO Auto-generated constructor stub
 	}
@@ -31,9 +33,10 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	
 
 	public CustomerPanelBuilder(Frame scp,
-			TransactionController customerPanelController) {
+			TransactionController transCtrl) {
 		// TODO Auto-generated constructor stub
-		panel=new CustomerPanel(scp, customerPanelController);
+		panel=new CustomerPanel(scp, transCtrl);
+		this.transCtrl = transCtrl;
 		p=new Properties();
 	}
 
@@ -56,7 +59,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 	@Override
 	public void buildControls() {
 		// TODO Auto-generated method stub
-		panel.getBtnTerminate().addActionListener(new TerminateButtonListener(panel)); 
+		panel.getBtnTerminate().addActionListener(new CustomerPanelTerminateButtonListener(transCtrl)); 
 	}
 
 	@Override

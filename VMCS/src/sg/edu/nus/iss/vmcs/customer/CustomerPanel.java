@@ -87,7 +87,7 @@ public class CustomerPanel extends Dialog {
 	    Panel bottom=new Panel();
 	    
 	    bottom.setLayout(new GridLayout(0,1));
-	     setFaultDetection(new FaultDetectionPanel());
+	     setFaultDetection(new FaultDetectionPanel(transCtrl));
 	     bottom.add(faultDetection,BorderLayout.NORTH);
 	    Panel can=new Panel();
 	   

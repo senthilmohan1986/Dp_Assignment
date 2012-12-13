@@ -22,6 +22,8 @@ public class TransactionController {
 	private CustomerPanel customerPanel;
 	private CoinReceiver coinReceiver;
 	private ChangeGiver chainGiver;
+	
+
 	private DispenseController dispenseController;
 	
 	private ITerminateStrategy terminateStrategy;
@@ -196,6 +198,9 @@ public class TransactionController {
 	public void createChangeGiver(){
 		ChangeGiver cg = new ChangeGiver();
 		
+	}
+	public ChangeGiver getChainGiver() {
+		return chainGiver;
 	}
 
 }

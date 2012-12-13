@@ -16,7 +16,7 @@ public class CustomerPanelTerminateButtonListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		ctrl.setTerminateStrategy(new CustomerTransactionTerminator());
-		ctrl.cancelTransaction();
+		ctrl.terminate();
 	}
 
 }
