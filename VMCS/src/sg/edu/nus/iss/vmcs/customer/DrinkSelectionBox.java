@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.vmcs.customer;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -46,7 +47,7 @@ public class DrinkSelectionBox extends Panel{
 	private TextField txtSariStatus=new TextField("NOT IN STOCK");
 	private TextField txtSoyaBeanStatus=new TextField("NOT IN STOCK");
 	private TextField txtCocaColaStatus=new TextField("NOT IN STOCK");*/
-	Panel panelDrinkSelect = new Panel();
+	Panel panelDrinkSelect = new Panel(new BorderLayout());
 	private Label drinkSelectedLabel = new  Label("\nSelected Drink");
 	private Label drinkSelected = new  Label();
 	
@@ -89,13 +90,14 @@ public class DrinkSelectionBox extends Panel{
 				public void actionPerformed(ActionEvent arg0) {
 					System.out.println(arg0.getActionCommand() + ((Button)(arg0.getSource())).getLabel());
 					drinkSelected.setText(arg0.getActionCommand());
+					
 				}
 			});
 			p.add(drink);
 		}
 	//	drinkSelected.setText("Coke");
-		panelDrinkSelect.add(drinkSelectedLabel);
-		panelDrinkSelect.add(drinkSelected);
+		panelDrinkSelect.add(drinkSelectedLabel, BorderLayout.LINE_START);
+		panelDrinkSelect.add(drinkSelected, BorderLayout.CENTER);
 		
 		/*p.add(btnCoca);
 		p.add(setBlackTheme(txtCoca));
@@ -115,8 +117,9 @@ public class DrinkSelectionBox extends Panel{
 		p.add(setBlackTheme(txtCocaCola));		
 		p.add(setDisableTheme(txtCocaColaStatus));
 		*/
-		add(p);
-		add(panelDrinkSelect);
+		setLayout(new BorderLayout()); 
+		add(p, BorderLayout.NORTH);
+		add(panelDrinkSelect, BorderLayout.CENTER);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
