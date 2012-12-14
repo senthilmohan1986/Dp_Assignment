@@ -3,6 +3,7 @@ package sg.edu.nus.iss.vmcs.customer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
@@ -58,6 +59,8 @@ public class DrinkSelectionBox extends Panel{
 
 	public void setDrinkSelected(Label drinkSelected) {
 		this.drinkSelected = drinkSelected;
+		
+		
 	}
 	
 	private StoreController storeCtrl;
@@ -66,7 +69,9 @@ public class DrinkSelectionBox extends Panel{
 	public DrinkSelectionBox(StoreController storeCtrl)
 	{
 		this.storeCtrl = storeCtrl;
-		FlowLayout grid = new FlowLayout();	//	grid.setHgap(50);
+		//FlowLayout grid = new FlowLayout();	//	
+		GridLayout grid=new GridLayout(0,2);grid.setHgap(50);grid.setVgap(2);
+		this.setBounds(10,10,10,10);
 		Properties prop=new Properties();
 		try{
 		InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
@@ -90,15 +95,20 @@ public class DrinkSelectionBox extends Panel{
 				public void actionPerformed(ActionEvent arg0) {
 					System.out.println(arg0.getActionCommand() + ((Button)(arg0.getSource())).getLabel());
 					drinkSelected.setText(arg0.getActionCommand());
+					drinkSelected.setBackground(Color.green);
 					
 				}
 			});
+			
 			p.add(drink);
+			p.add(new Panel());
 		}
-	//	drinkSelected.setText("Coke");
-		panelDrinkSelect.add(drinkSelectedLabel, BorderLayout.LINE_START);
+
+	panelDrinkSelect.add(drinkSelectedLabel, BorderLayout.LINE_START);
 		panelDrinkSelect.add(drinkSelected, BorderLayout.CENTER);
-		
+		drinkSelected.setFont(new Font("ARIAL", 1, 12));
+//		panelDrinkSelect.setBackground(Color.white);
+
 		/*p.add(btnCoca);
 		p.add(setBlackTheme(txtCoca));
 		p.add(setDisableTheme(txtCocaStatus));

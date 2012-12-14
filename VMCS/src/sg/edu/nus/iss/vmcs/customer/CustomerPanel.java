@@ -2,6 +2,7 @@ package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -81,10 +82,29 @@ public class CustomerPanel extends Dialog {
 		Font f=new Font("ARIAL", 0, 18);
 		Label header=new Label(VIMTO_SOFT_DRINK_DISPENSER);
 		header.setFont(f);
-		
+		header.setAlignment(1);
 		north.add(header,BorderLayout.NORTH);
-		north.add(coinInputBox,BorderLayout.CENTER);
-		center.add(drinkSelectionBox,BorderLayout.PAGE_START);
+		
+		//Panel selBox=new Panel(new GridLayout(0,1));
+		Panel selBox=new Panel();
+	    BorderLayout b=new BorderLayout();
+	    selBox.setLayout(b);
+	     selBox.setBackground(Color.LIGHT_GRAY);
+	   
+	    
+		Label lbl=new Label("Please select drink:");
+		
+		
+		
+		 
+		selBox.add(lbl,BorderLayout.NORTH);
+		selBox.add(drinkSelectionBox,BorderLayout.CENTER);
+		selBox.add(coinInputBox,BorderLayout.SOUTH);
+		//selBox.add(drinkSelectionBox);
+		//selBox.add(coinInputBox);
+		north.add(selBox,BorderLayout.CENTER);
+		
+		//center.add(drinkSelectionBox,BorderLayout.PAGE_START);
 		
 		
 		Panel nochange=new Panel(new BorderLayout());
