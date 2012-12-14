@@ -42,7 +42,7 @@ public class MaintenancePanel extends Dialog {
 
 		mctrl = mc;
 
-		initialize();
+	
 	}
 
 	public void initialize() {

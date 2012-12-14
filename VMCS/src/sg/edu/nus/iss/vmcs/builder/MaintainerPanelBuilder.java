@@ -29,6 +29,8 @@ public class MaintainerPanelBuilder implements PanelBuilder {
 		
 		ImageIcon img=new ImageIcon("tools.png");
 		panel.setIconImage(img.getImage());
+		
+		panel.initialize();
 	}
 
 	@Override

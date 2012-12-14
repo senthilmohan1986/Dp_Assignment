@@ -40,7 +40,7 @@ public class MachinerySimulatorPanel extends Dialog {
 		machineryCtrl = machCtrl;
 		storeCtrl = machineryCtrl.getMainController().getStoreController();
 
-		//initialize();
+	
 	}
 
 public void initialize() {
