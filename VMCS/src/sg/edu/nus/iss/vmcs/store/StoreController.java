@@ -26,7 +26,37 @@ public class StoreController {
 
 	private PropertyLoader cashLoader;
 	private PropertyLoader drinksLoader;
+	private static StoreController storeController;
+	
+	
+	
+	
+	public CashStore getcStore() {
+		return cStore;
+	}
 
+	public void setcStore(CashStore cStore) {
+		this.cStore = cStore;
+	}
+
+	public DrinksStore getdStore() {
+		return dStore;
+	}
+
+	public void setdStore(DrinksStore dStore) {
+		this.dStore = dStore;
+	}
+
+	public static StoreController getInstance(){
+		if(storeController==null){
+			storeController = new StoreController();
+		}
+		return storeController;
+	}
+	
+	public StoreController(){
+		
+	}
 	public StoreController(
 		PropertyLoader cashLoader,
 		PropertyLoader drinksLoader) {
@@ -40,7 +70,7 @@ public class StoreController {
 		initializeStores();
 	}
 
-	private void initializeStores() throws IOException {
+	public void initializeStores() throws IOException {
 		initializeCashStore();
 		initializeDrinkStore();
 	}
@@ -114,6 +144,12 @@ public class StoreController {
 			return dStore.getStoreItem(idx);
 	}
 
+	public Store getStoreByType(int type) {
+		if (type == Store.CASH)
+			return (Store) cStore;
+		else
+			return (Store) dStore;
+	}
 	public void setPrice(int idx, int pr)  {
 		DrinksStoreItem item;
 
