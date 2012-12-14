@@ -2,6 +2,7 @@ package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -70,8 +71,9 @@ public class DrinkSelectionBox extends Panel{
 	{
 		this.storeCtrl = storeCtrl;
 		//FlowLayout grid = new FlowLayout();	//	
-		GridLayout grid=new GridLayout(0,2);grid.setHgap(50);grid.setVgap(2);
-		this.setBounds(10,10,10,10);
+		GridLayout grid=new GridLayout(0,1);grid.setHgap(5);grid.setVgap(0);
+	
+		
 		Properties prop=new Properties();
 		try{
 		InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
@@ -99,9 +101,11 @@ public class DrinkSelectionBox extends Panel{
 					
 				}
 			});
-			
-			p.add(drink);
-			p.add(new Panel());
+			Panel drinkButtonHolder=new Panel();
+			drink.setPreferredSize(new Dimension(150,20));
+			drinkButtonHolder.add(drink);
+			p.add(drinkButtonHolder);
+			//p.add(new Panel());
 		}
 
 	panelDrinkSelect.add(drinkSelectedLabel, BorderLayout.LINE_START);
