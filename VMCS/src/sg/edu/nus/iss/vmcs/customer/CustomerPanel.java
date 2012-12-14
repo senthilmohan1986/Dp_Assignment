@@ -37,11 +37,11 @@ public class CustomerPanel extends Dialog {
 	private DrinkSelectionBox drinkSelectionBox;;
 	private Button btnTerminate=new Button("Terminate and Return Cash");
 	//private TextField txtNoChangeAvail=new TextField("No Change Available");
-	private WarningDisplay warnNoChange;
+	//private WarningDisplay warnNoChange;
 	private Label lblCollectCoins=new Label("Collect Coins: ");
 	private TextField txtCollectCoin=new TextField("0 C");
-	private Label lblCollectCan=new Label("Collect Can Here: ");
-	private TextField txtCollectCan=new TextField("No Can ");
+	//private Label lblCollectCan=new Label("Collect Can Here: ");
+	//private TextField txtCollectCan=new TextField("No Can ");
 	private FaultDetectionPanel faultDetection;
 	/*public CustomerPanel(Frame owner, TransactionController transCtrl) {
 		
@@ -59,9 +59,9 @@ public class CustomerPanel extends Dialog {
 		super(owner);
 		// TODO Auto-generated constructor stub
 		this.transCtrl= transCtrl;
-		warnNoChange=new WarningDisplay("No Change Available");
+	//	warnNoChange=new WarningDisplay("No Change Available");
 		this.storeController = storeController;
-		drinkSelectionBox = new DrinkSelectionBox(storeController);
+		drinkSelectionBox = new DrinkSelectionBox(storeController, this);
 		coinInputBox = new CoinInputBox(drinkSelectionBox,transCtrl);
 
 		
@@ -108,9 +108,9 @@ public class CustomerPanel extends Dialog {
 		
 		
 		Panel nochange=new Panel(new BorderLayout());
-		warnNoChange.setPreferredSize(new Dimension(10,50));
+	//	warnNoChange.setPreferredSize(new Dimension(10,50));
 		
-		nochange.add(warnNoChange,BorderLayout.NORTH);
+	//	nochange.add(warnNoChange,BorderLayout.NORTH);
 		nochange.add(btnTerminate,BorderLayout.CENTER);
 		center.add(nochange,BorderLayout.CENTER);
 		btnTerminate.addActionListener(new CustomerPanelTerminateButtonListener(transCtrl));
@@ -128,9 +128,9 @@ public class CustomerPanel extends Dialog {
 	     bottom.add(faultDetection,BorderLayout.NORTH);
 	    Panel can=new Panel();
 	   
-		can.add(lblCollectCan);
-		txtCollectCan.setPreferredSize(new Dimension(10,50));
-		can.add(txtCollectCan,BorderLayout.CENTER);
+	//	can.add(lblCollectCan);
+	//	txtCollectCan.setPreferredSize(new Dimension(10,50));
+	//	can.add(txtCollectCan,BorderLayout.CENTER);
 		bottom.add(can);
 		south.add(bottom);
 		
@@ -149,7 +149,7 @@ public class CustomerPanel extends Dialog {
 			}
 		});
 		
-		
+		coinInputBox.setEnabled(false);
 		this.setVisible(true);
 		
 		
@@ -183,14 +183,6 @@ public class CustomerPanel extends Dialog {
 	}
 
 
-	public Label getLblCollectCan() {
-		return lblCollectCan;
-	}
-
-
-	public TextField getTxtCollectCan() {
-		return txtCollectCan;
-	}
 
 
 	public void setCoinInputBox(CoinInputBox coinInputBox) {
@@ -219,15 +211,6 @@ public class CustomerPanel extends Dialog {
 		this.txtCollectCoin = txtCollectCoin;
 	}
 
-
-	public void setLblCollectCan(Label lblCollectCan) {
-		this.lblCollectCan = lblCollectCan;
-	}
-
-
-	public void setTxtCollectCan(TextField txtCollectCan) {
-		this.txtCollectCan = txtCollectCan;
-	}
 
 
 	public FaultDetectionPanel getFaultDetection() {

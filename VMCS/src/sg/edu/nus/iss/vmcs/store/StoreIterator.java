@@ -22,7 +22,7 @@ public abstract class StoreIterator {
 	public StoreItem nextItem(){
 		try{
 			item = it.next();
-			//System.out.println("Printing item ==> " + item.getContent().getName() + " / " + item.getContent().getDenomination());
+			//System.out.println("Iterator Pattern ==> " + item.getContent().getName() + " / " + item.getContent().getDenomination());
 		}
 		catch(NoSuchElementException e){
 			item = null;

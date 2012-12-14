@@ -106,7 +106,6 @@ public class CoinInputBox extends Panel {
 		this.transCtrl = transCtrl;
 		 this.receiver = new CoinReceiver(transCtrl, this);
 		 this.transCtrl.setCoinReceiver(receiver);
-		 
 		CoinInputListener fiveCentListener=new CoinInputListener(receiver, this,CoinType.FIVE);
 		CoinInputListener tenCentListener=new CoinInputListener(receiver, this,CoinType.TEN);
 		CoinInputListener twentyCentListener=new CoinInputListener(receiver, this,CoinType.TWENTY);
@@ -135,7 +134,7 @@ public class CoinInputBox extends Panel {
 			
 			@Override
 			public void update(boolean status, Coin o) {
-				System.out.println("Success for invalid");
+			//	System.out.println("Success for invalid");
 				if (o == null) {
 					this.getLabel().setBackground(Color.red);
 					this.getLabel().setText("Invalid");
@@ -162,7 +161,7 @@ public class CoinInputBox extends Panel {
 					InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
 					Properties prop = new Properties();
 					prop.load(ip);
-					System.out.println("success for total amt");
+				//	System.out.println("success for total amt");
 					 DecimalFormat df = new DecimalFormat("##.##");
 					if (o != null) {
 						double presentValue = 0;
@@ -174,30 +173,32 @@ public class CoinInputBox extends Panel {
 						String value = this.getBox().getDrinkSelected().getText();
 						String tokenized[] = value.split("-");
 						String priceTokenized = tokenized[1].split("C")[0].substring(1);
-						System.out.println("%%%%%%%%" +priceTokenized);
+					//	System.out.println("%%%%%%%%" +priceTokenized);
 						
 						Double totalValue = presentValue + o.getValue()/ 100f;
 						this.getLabel().setBackground(Color.green);
 						this.getLabel().setPreferredSize(new Dimension(100, 20));
-						System.out.println(Double.toString(totalValue));
+					//	System.out.println(Double.toString(totalValue));
 						this.getLabel().setText(df.format(totalValue));
 						
 						this.getLabel().setOpaque(true);
 						this.getParent().repaint();
 						
 						if (totalValueInCents >= Double.parseDouble(priceTokenized)) {
-							System.out.println("Success");
+						//	System.out.println("Success");
 							String labelName = selectionBox.getDrinkSelected().getText();
 							String tokenizedOne[] = value.split("-");
 							for (int i = 0; i < 6; i++) {
 								String drinkName = "Name" + i;
 								if (tokenized[0].equals(prop.getProperty(drinkName))) {
 									String valueDrink = drinkName;
-									System.out.println(valueDrink);
+								//	System.out.println(valueDrink);
 									transCtrl.DispenseDrink(i);
-									selectionBox.getDrinkSelected().setText("Success Dispensed");
+									selectionBox.getDrinkSelected().setText(tokenized[0] + " Dispensed");
+									selectionBox.setEnabled(true);
 									this.getParent().repaint();
 									this.getLabel().setText(df.format((totalValue - Double.parseDouble(priceTokenized)/100f)));
+									transCtrl.getChainGiver().giveChange((int)((totalValue*100) - Double.parseDouble(priceTokenized)));
 								}
 							}
 							
@@ -217,7 +218,7 @@ public class CoinInputBox extends Panel {
 				@Override
 				public void update(boolean status, Coin o) {
 					if (o == null) {
-						System.out.println(btnInvalidCoin.getLabel());
+						//System.out.println(btnInvalidCoin.getLabel());
 						this.getLabel().setBackground(Color.yellow);
 						this.getLabel().setText(btnInvalidCoin.getLabel());
 						this.getLabel().setOpaque(true);

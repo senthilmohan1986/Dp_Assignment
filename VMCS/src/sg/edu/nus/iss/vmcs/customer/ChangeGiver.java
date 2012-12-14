@@ -83,11 +83,11 @@ public class ChangeGiver {
 		
 	//	StoreController storeController = storecontroller.getInstance();
 		storecontroller.initializeStores();
-		System.out.println("Store has initialized");
+	//	System.out.println("Store has initialized");
 		
 		Store storeItem = storecontroller.getStoreByType(Store.CASH);
 		
-		System.out.println("How to get the index for Store Item??");
+	//	System.out.println("How to get the index for Store Item??");
 		int index=10;
 		StoreItem storeItem1 = storecontroller.getStoreItem(Store.CASH, index);
 		
@@ -101,8 +101,7 @@ public class ChangeGiver {
 		while (iterator.hasNextItem()) {
 			item[i] = (StoreItem) iterator.nextItem();
 			i++;
-			System.out.println(item[i-1].getContent().getName());
-			
+			//System.out.println(item[i-1].getContent().getName());
 		}
 		//after the array is formed, traverse by index and set successor as the next index
 		cashStoreItems = item;

@@ -7,7 +7,7 @@ public class MaintainerLoginTerminator implements ITerminateStrategy {
 	@Override
 	public void terminate(TransactionController transactionCtrl) {
 		// TODO Auto-generated method stub
-		System.out.println("MaintainerLoginTerminator");
+		//System.out.println("MaintainerLoginTerminator");
 		
 		if((transactionCtrl.getCoinReceiver().getCoins() != null))
 		{

@@ -10,6 +10,7 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Stroke;
 import java.awt.TextField;
+import java.awt.Window;
 
 import java.awt.Button;
 import java.awt.event.ActionEvent;
@@ -52,6 +53,7 @@ public class DrinkSelectionBox extends Panel{
 	Panel panelDrinkSelect = new Panel(new BorderLayout());
 	private Label drinkSelectedLabel = new  Label("\nSelected Drink");
 	private Label drinkSelected = new  Label();
+	private CustomerPanel customerPanel;
 	
 	
 	public Label getDrinkSelected() {
@@ -67,9 +69,10 @@ public class DrinkSelectionBox extends Panel{
 	private StoreController storeCtrl;
 	
 	
-	public DrinkSelectionBox(StoreController storeCtrl)
+	public DrinkSelectionBox(StoreController storeCtrl,  CustomerPanel customerPanel)
 	{
 		this.storeCtrl = storeCtrl;
+		this.customerPanel = customerPanel;
 		//FlowLayout grid = new FlowLayout();	//	
 		GridLayout grid=new GridLayout(0,1);grid.setHgap(5);grid.setVgap(0);
 	
@@ -88,17 +91,22 @@ public class DrinkSelectionBox extends Panel{
 			Button drink = new Button(drinkContent);
 				if (storeItem[i].getContent().getName().equals(prop.getProperty(drinkName))) {
 					drink.setName(drinkName);
-					System.out.println(drinkName);
+				//	System.out.println(drinkName);
 			}
 //			drink.setName(name)
+			final CustomerPanel cp = customerPanel;
 			drink.addActionListener(new ActionListener() {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					System.out.println(arg0.getActionCommand() + ((Button)(arg0.getSource())).getLabel());
+				//	System.out.println(arg0.getActionCommand() + ((Button)(arg0.getSource())).getLabel());
 					drinkSelected.setText(arg0.getActionCommand());
 					drinkSelected.setBackground(Color.green);
-					
+					setEnabled(false);
+					cp.getCoinInputBox().setEnabled(true);
+				//	DrinkSelectionBox.this.customerPanel.getCoinInputBox().setEnabled(true);
+				//	DrinkSelectionBox.this.customerPanel.getCoinInputBox().repaint();
+				//	DrinkSelectionBox.this.customerPanel.setVisible(true);
 				}
 			});
 			Panel drinkButtonHolder=new Panel();

@@ -43,8 +43,9 @@ public class CashStoreItem extends StoreItem implements MakeChangeInterface{
 
 	public void processChange(int change)
 	{
-		if (change==0)
+		if (change==0){
 			return;
+		}
 		else
 		{
 			int availableQty = getQuantity();
@@ -66,7 +67,9 @@ public class CashStoreItem extends StoreItem implements MakeChangeInterface{
 					availableQty=0;
 				}
 				setQuantity(availableQty);
+				System.out.println("CHANGE GIVEN :- " + denoCoin);
 			}
+			
 			if ((successor == null ) && (change > 0 ))
 			{
 				System.out.println("Not enough coin to dispense");
