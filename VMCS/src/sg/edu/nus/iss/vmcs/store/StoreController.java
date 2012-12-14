@@ -26,7 +26,17 @@ public class StoreController {
 
 	private PropertyLoader cashLoader;
 	private PropertyLoader drinksLoader;
-
+	private static StoreController storeController;
+	public static StoreController getInstance(){
+		if(storeController==null){
+			storeController = new StoreController();
+		}
+		return storeController;
+	}
+	
+	public StoreController(){
+		
+	}
 	public StoreController(
 		PropertyLoader cashLoader,
 		PropertyLoader drinksLoader) {
@@ -114,6 +124,12 @@ public class StoreController {
 			return dStore.getStoreItem(idx);
 	}
 
+	public Store getStoreByType(int type) {
+		if (type == Store.CASH)
+			return (Store) cStore;
+		else
+			return (Store) dStore;
+	}
 	public void setPrice(int idx, int pr)  {
 		DrinksStoreItem item;
 

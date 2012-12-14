@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.Frame;
+import java.io.IOException;
 
 import sg.edu.nus.iss.vmcs.builder.CustomerPanelBuilder;
 import sg.edu.nus.iss.vmcs.builder.controller.PanelSetupController;
@@ -33,10 +34,10 @@ public class TransactionController {
 
 	
 	
-	public void initialize() throws VMCSException {
+	public void initialize() throws VMCSException, IOException {
 		
 		dispenseController = new DispenseController(this);
-		chainGiver = new ChangeGiver(this);
+		//chainGiver = new ChangeGiver(this);
 	}
 
 	/*public void initialize() throws VMCSException {
