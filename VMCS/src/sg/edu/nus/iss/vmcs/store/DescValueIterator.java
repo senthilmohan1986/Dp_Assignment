@@ -16,8 +16,8 @@ public class DescValueIterator extends StoreIterator{
 		this.store = store;
 		itemList = new TreeSet<StoreItem>();
 		StoreItem[] itemArr = store.getItems();
-		for(StoreItem tmpItem : itemArr){
-			itemList.add(tmpItem);
+		for(int i = itemArr.length - 1 ; i >=0 ; i--){
+			itemList.add(itemArr[i]);
 		}
 		first();
 	}
@@ -25,6 +25,6 @@ public class DescValueIterator extends StoreIterator{
 	@Override
 	public void first() {
 		setIt(itemList.iterator());
-		nextItem();
+		//nextItem();
 	}
 }

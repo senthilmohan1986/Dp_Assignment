@@ -45,6 +45,9 @@ public abstract class Store {
 			return;
 		items[idx] = object;
 	}
+	public void add(int idx, StoreItem Object){
+		items[idx] = Object;
+	}
 
 	public StoreItem getStoreItem(int idx) {
 		if ((idx >= size) || (idx < 0))
