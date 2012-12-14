@@ -82,5 +82,9 @@ public abstract class Store {
 	public int getStoreSize() {
 		return size;
 	}
+	
+	public StoreIterator createIterator(int type) throws Exception{
+		throw new Exception("This method needs to be override");
+	}
 
 }

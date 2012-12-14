@@ -9,15 +9,15 @@ package sg.edu.nus.iss.vmcs.store;
  */
 
 /**
- *
- *
+ * 
+ * 
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
 
 public class StoreObject {
-
 	String name;
+	private double denomination;
 
 	public StoreObject() {
 	}
@@ -34,4 +34,11 @@ public class StoreObject {
 		name = n;
 	}
 
+	public double getDenomination() {
+		return denomination;
+	}
+
+	public void setDenomination(double denomination) {
+		this.denomination = denomination;
+	}
 }

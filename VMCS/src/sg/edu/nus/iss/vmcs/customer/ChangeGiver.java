@@ -31,15 +31,12 @@ public class ChangeGiver {
 		StoreItem storeItem = storecontroller.getStoreItem(1, 10);
 		CashStore cashStore = new CashStore();
 		int cashStoreSize = cashStore.getStoreSize();
-		
-		
 	}
 	
 	public void falutIsDetected()
 	{
 		transactionController.setTerminateStrategy(new ChangeFaultTerminator());
 		transactionController.terminate();
-		
 	}
 	
 }

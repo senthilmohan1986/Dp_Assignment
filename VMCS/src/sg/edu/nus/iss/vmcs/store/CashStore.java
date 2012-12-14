@@ -18,6 +18,9 @@ package sg.edu.nus.iss.vmcs.store;
 public class CashStore extends Store {
 
 	public final static int INVALID_COIN_WEIGHT = 9999;
+	
+	public final static int ITERATOR_TYPE_DESC_VALUE = 1;
+	public final static int ITERATOR_TYPE_NON_ZERO = 2;
 
 	public CashStore() {
 	}
@@ -49,6 +52,15 @@ public class CashStore extends Store {
 		}
 	}
 
-
+	@Override
+	public StoreIterator createIterator(int type) {
+		if(type == ITERATOR_TYPE_DESC_VALUE){
+			return new DescValueIterator(this);
+		}
+		else if(type == ITERATOR_TYPE_NON_ZERO){
+			return new NonZeroIterator(this);
+		}
+		return null;
+	}
 }
 

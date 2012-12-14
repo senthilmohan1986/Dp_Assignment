@@ -15,7 +15,7 @@ package sg.edu.nus.iss.vmcs.store;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class StoreItem {
+public class StoreItem implements Comparable{
 
 	private StoreObject content;
 	private int quantity;
@@ -53,5 +53,20 @@ public class StoreItem {
 
 	public void increment() {
 		quantity++;
+	}
+	
+	@Override
+	public int compareTo(Object obj) {
+		if(obj instanceof StoreItem){
+			if(this.getContent().getDenomination() > ((StoreItem) obj).getContent().getDenomination()){
+				return -1;
+			}
+			else{
+				return 1;
+			}
+		}
+		else{
+			throw new ClassCastException("Cannot compare StoreObject");
+		}
 	}
 }
