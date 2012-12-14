@@ -40,7 +40,7 @@ public class StoreController {
 		initializeStores();
 	}
 
-	private void initializeStores() throws IOException {
+	public void initializeStores() throws IOException {
 		initializeCashStore();
 		initializeDrinkStore();
 	}
