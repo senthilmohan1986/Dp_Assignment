@@ -16,7 +16,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 
 
 
-public class MachineryPanelBuilder extends PanelBuilder {
+public class MachineryPanelBuilder implements PanelBuilder {
 
 	private static final String TITLE = "Machinery Panel";
 
@@ -51,26 +51,7 @@ public class MachineryPanelBuilder extends PanelBuilder {
 		
 	}
 
-	@Override
-	public void buildDisplay() {
-		// TODO Auto-generated method stub
-		
-		
-		
-	}
 
-	@Override
-	public void buildCoinInput() {
-		// TODO Auto-generated method stub
-		
-		
-	}
-
-	@Override
-	public void buildDrinkSelectionBox() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Dialog getPanel() {

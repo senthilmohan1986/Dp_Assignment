@@ -109,7 +109,7 @@ public class TransactionController {
 		
 		PanelSetupController builder=new PanelSetupController();
 		builder.setPanelBuilder(new CustomerPanelBuilder((Frame) scp,this, storeController));
-		builder.constractPanel();
+		builder.buildPanel();
 		customerPanel=(CustomerPanel)builder.getPanel();
 		builder.getPanel().setVisible(true);
 

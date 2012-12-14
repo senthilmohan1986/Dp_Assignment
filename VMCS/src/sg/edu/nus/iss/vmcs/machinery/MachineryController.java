@@ -65,7 +65,7 @@ public class MachineryController {
 		
 		PanelSetupController builder=new PanelSetupController();
 		builder.setPanelBuilder(new MachineryPanelBuilder((Frame) scp,this));
-		builder.constractPanel();
+		builder.buildPanel();
 		ml=(MachinerySimulatorPanel) builder.getPanel();
 		ml.setVisible(true);
 	}

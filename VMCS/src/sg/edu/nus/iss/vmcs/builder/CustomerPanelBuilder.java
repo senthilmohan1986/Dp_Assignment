@@ -21,7 +21,7 @@ import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.CustomerPanelTerminateButtonListener;
 
 
-public class CustomerPanelBuilder  extends PanelBuilder {
+public class CustomerPanelBuilder  implements PanelBuilder {
 
 
 	Properties p=new Properties();
@@ -72,57 +72,7 @@ public class CustomerPanelBuilder  extends PanelBuilder {
 		panel.getBtnTerminate().addActionListener(new CustomerPanelTerminateButtonListener(transCtrl)); 
 	}
 
-	@Override
-	public void buildDisplay() {
-		// TODO Auto-generated method stub
-		
-		
-		try {
-			InputStream ip=new FileInputStream("DrinkPropertyFile.txt");
-			p.load(ip);
-			/*panel.getDrinkSelectionBox().getTxtCoca().setText((String)p.get("Price1"));
-			panel.getDrinkSelectionBox().getTxtFanta().setText((String)p.get("Price2"));
-			panel.getDrinkSelectionBox().getTxtSari().setText((String)p.get("Price3"));
-			panel.getDrinkSelectionBox().getTxtSoyaBean().setText((String)p.get("Price4"));
-			panel.getDrinkSelectionBox().getTxtCocaCola().setText((String)p.get("Price5"));
-			
-			if (Integer.parseInt((String)p.get("Quantity1"))<1)
-			{
-			panel.getDrinkSelectionBox().getTxtCocaStatus().setForeground(Color.white);
-			panel.getDrinkSelectionBox().getBtnCoca().setEnabled(false);
-			}
-			if (Integer.parseInt((String)p.get("Quantity2"))<1){
-				panel.getDrinkSelectionBox().getTxtFantaStatus().setForeground(Color.white);panel.getDrinkSelectionBox().getBtnFanta().setEnabled(false);
-			}
-			if (Integer.parseInt((String)p.get("Quantity3"))<1){
-				panel.getDrinkSelectionBox().getTxtSariStatus().setForeground(Color.white);panel.getDrinkSelectionBox().getBtnSari().setEnabled(false);
-			}
-			if (Integer.parseInt((String)p.get("Quantity4"))<1){
-				panel.getDrinkSelectionBox().getTxtSoyaBeanStatus().setForeground(Color.white);panel.getDrinkSelectionBox().getBtnSoyaBean().setEnabled(false);
-			}
-			if (Integer.parseInt((String)p.get("Quantity5"))<1){
-				panel.getDrinkSelectionBox().getTxtCocaColaStatus().setForeground(Color.white);panel.getDrinkSelectionBox().getBtnCocaCola().setEnabled(false);
-			}*/
-			
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void buildCoinInput() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void buildDrinkSelectionBox() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public Dialog getPanel() {

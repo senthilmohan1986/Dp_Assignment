@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 
-public class MaintainerPanelBuilder extends PanelBuilder {
+public class MaintainerPanelBuilder implements PanelBuilder {
 
 	public MaintenancePanel panel;
 	public MaintenanceController mtnCtrl;
@@ -47,23 +47,7 @@ public class MaintainerPanelBuilder extends PanelBuilder {
 
 	}
 
-	@Override
-	public void buildDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void buildCoinInput() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void buildDrinkSelectionBox() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public Dialog getPanel() {
